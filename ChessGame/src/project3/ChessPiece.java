@@ -4,6 +4,12 @@ import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
 import gvprojects.chess.model.Player;
 
+/************************************************************
+ * CIS 163-07
+ * Project 0
+ *
+ * @version Feb 24, 2014
+ ************************************************************/
 public abstract class ChessPiece implements IChessPiece {
 	private Player owner;
 	
