@@ -8,6 +8,8 @@ import gvprojects.chess.model.Player;
  * CIS 163-07
  * Project 0
  *
+ * @author Kaye Suarez
+ * @author DaiLynn Dietz
  * @version Feb 24, 2014
  ************************************************************/
 public abstract class ChessPiece implements IChessPiece {
