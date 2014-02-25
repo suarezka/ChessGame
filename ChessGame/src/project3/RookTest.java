@@ -12,7 +12,8 @@ import static org.junit.Assert.*;
 /**
  * Test the {@code Rook} class
  * 
- * @author Dailynn Dietz and Kaye Suarez
+ * @author Dailynn Dietz 
+ * @author Kaye Suarez
  */
 // Created 12/8/12 at 9:01 PM
 // (C) Zachary Kurmas 2012
