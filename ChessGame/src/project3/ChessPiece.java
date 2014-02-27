@@ -6,7 +6,7 @@ import gvprojects.chess.model.Player;
 
 /************************************************************
  * CIS 163-07
- * Project 0
+ * Chess Project
  *
  * @author Kaye Suarez
  * @author DaiLynn Dietz
@@ -43,8 +43,16 @@ public abstract class ChessPiece implements IChessPiece {
 		int toC = move.toColumn;
 		int toR = move.toRow;
 		
+		//Makes sure a move is happening
+		if(toC == fromC && toR == fromR)
+			return false;
+		
 		//Checking if destination is occupied by same team
-		if(board[toC][toR].player() == owner)
+		if(board[toR][toC].player() == owner)
+			return false;
+		
+		//Ensuring that the piece is at the from location
+		if(board[fromR][fromC] != this)
 			return false;
 		
 		return true;
