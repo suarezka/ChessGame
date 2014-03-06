@@ -46,11 +46,34 @@ public class Rook extends ChessPiece {
 	 * @param move Move desired to be made by rook
 	 * @return  True if is valid move
 	 ************************************************************/
-	public boolean isValidMove(Move move){
-		
-		
-		
-		return true;
-	}
-	
+	public boolean isValidMove(Move move, IChessPiece[][] board){
+			
+			//Getting move data for Rook piece
+			int fromC = move.fromColumn;
+			int fromR = move.fromRow;
+			int toC = move.toColumn;
+			int toR = move.toRow;
+			
+			//Parent isValidMove method
+			super.isValidMove(move, board);
+			
+			//Check if move is either front/back or side to side
+			if (fromC != toC || fromR != toR) {
+				return false;
+			}
+			
+			//Check if other pieces in path going right
+			if (fromR == toR && fromC < toC) {
+				//Loop through path to see if piece is in the way
+				while (fromC <= toC) {
+					if (board[fromC][fromR] != null) {
+						return false;
+					}
+					fromC++;
+				}
+			}
+			
+			
+			return true;
+		}
 }
