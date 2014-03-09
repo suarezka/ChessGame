@@ -14,7 +14,7 @@ import gvprojects.chess.model.Player;
  * @version Mar 8, 2014
  ************************************************************/
 public class Pawn extends ChessPiece {
-
+	
 	/************************************************************
 	 * Constructor for Pawn Class
 	 * 
@@ -48,7 +48,48 @@ public class Pawn extends ChessPiece {
 			return false;
 		}
 		
+		int fromC = move.fromColumn;
+		int fromR = move.fromRow;
+		int toC = move.toColumn;
+		int toR = move.toRow;
+		
+		final int WHITE_START = 6;
+		final int BLACK_START = 1;
+			
+		//Checking if is starting from colors starting row
+		if((fromR == WHITE_START && player() == Player.WHITE) || 
+				(fromR == BLACK_START && player() == Player.BLACK)){
+			
+			//Seeing if move is bigger than two squares
+			if(Math.abs(fromR - toR) > 2){
+				return false;
+			}
+		}else{
+
+			//Checking if move is bigger than one square 
+			//for not first moves
+			if(Math.abs(fromR - toR) > 1){
+				return false;
+			}
+		}
+		
+		if(Math.abs(fromC - toC) > 1){
+			//TODO: Make sure this only happens when attacking
+			return false;
+		}
+		
+		if(Player.WHITE == player() && fromR - toR < 0){
+			return false;
+		}
+		
+		if(Player.BLACK == player() && fromR - toR > 0){
+			return false;
+		}
+
+		//TODO: Add a method that allows attacks diagonally
+		
 		return true;
 	}
 
 }
+
