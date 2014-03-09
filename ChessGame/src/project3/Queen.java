@@ -48,6 +48,18 @@ public class Queen extends ChessPiece{
 			return false;
 		}
 		
+		//Getting move data for Queen piece
+				int fromC = move.fromColumn;
+				int fromR = move.fromRow;
+				int toC = move.toColumn;
+				int toR = move.toRow;
+
+		
+		if(!Rook.isPathClear(fromR, fromC, toR, toC, board)){
+			return false;
+		}
+		//TODO: Add isPathClear for bishop as well
+		
 		return true;
 	}
 

@@ -59,6 +59,26 @@ public class Rook extends ChessPiece {
 			return false;
 		}
 
+		if(!isPathClear(fromR, fromC, toR, toC, board)){
+			return false;
+		}
+
+		return true;
+	}
+
+	/************************************************************
+	 * Helper method to allow queen to use same logic
+	 * 
+	 * @param fromR Starting row
+	 * @param fromC Starting column
+	 * @param toR Ending row
+	 * @param toC Ending Column
+	 * @param board Board being played on
+	 * @return  True if path between points is clear of pieces
+	 ************************************************************/
+	public static boolean isPathClear(int fromR, int fromC, int toR, 
+			int toC, IChessPiece[][] board){
+
 		int start;
 		int end;
 
@@ -103,7 +123,7 @@ public class Rook extends ChessPiece {
 				start++;
 			}
 		}
-
 		return true;
 	}
+
 }
