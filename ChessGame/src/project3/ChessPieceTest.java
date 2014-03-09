@@ -11,11 +11,15 @@ import java.util.Random;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Test the {@code ChessPiece} class
+/************************************************************
+ * CIS 163-07
+ * Chess Project
+ * JUnit Test for the ChessPiece class
  *
+ * @author DaiLynn Dietz
+ * @author Kaye Suarez
  * @author Zachary Kurmas & Hans Dulimarta
- */
+ ***********************************************************/
 // Created  12/8/12 at 9:28 PM
 // (C) Zachary Kurmas 2012
 

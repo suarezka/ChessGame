@@ -9,12 +9,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Test the {@code Rook} class
+/************************************************************
+ * CIS 163-07
+ * Chess Project 
+ * JUnit Test for the Rook class
  * 
- * @author Dailynn Dietz 
+ * @author DaiLynn Dietz 
  * @author Kaye Suarez
- */
+ * @author Zachary Kurmas & Hans Dulimarta
+ ***********************************************************/
 // Created 12/8/12 at 9:01 PM
 // (C) Zachary Kurmas 2012
 

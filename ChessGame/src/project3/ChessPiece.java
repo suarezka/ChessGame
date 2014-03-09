@@ -7,6 +7,7 @@ import gvprojects.chess.model.Player;
 /************************************************************
  * CIS 163-07
  * Chess Project
+ * Parent class to all other chess piece classes
  *
  * @author Kaye Suarez
  * @author DaiLynn Dietz
