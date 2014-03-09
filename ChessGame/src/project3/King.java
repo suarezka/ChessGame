@@ -6,40 +6,40 @@ import gvprojects.chess.model.Player;
 
 /************************************************************
  * CIS 163-07
- * Chess Project
- * Class to handle the behavior of a pawn
+ * Chess Project 
+ * Controls behavior of the king Piece
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
  * @version Mar 8, 2014
  ************************************************************/
-public class Pawn extends ChessPiece {
+public class King extends ChessPiece {
 
 	/************************************************************
-	 * Constructor for Pawn Class
+	 * Constructor for the King Class
 	 * 
 	 * @param p Player that owns this piece
 	 ************************************************************/
-	protected Pawn(Player p) {
+	protected King(Player p) {
 		super(p);
 	}
 
 	/************************************************************
-	 * Returns the piece type, pawn
+	 * Returns that this piece is a king
 	 * 
-	 * @return  Returns "Pawn"
+	 * @return  Returns word king in string form
 	 ************************************************************/
 	@Override
 	public String type() {
-		return "Pawn";
+		return "King";
 	}
 	
 	/************************************************************
-	 * Returns if is a valid move for a pawn
+	 * Returns if this is a valid move for a king or not
 	 * 
 	 * @param move Desired move
 	 * @param board Board being played on
-	 * @return  True if is a valid move for a pawn
+	 * @return  True if is a valid move
 	 ************************************************************/
 	public boolean isValidMove(Move move, IChessPiece[][] board){
 		

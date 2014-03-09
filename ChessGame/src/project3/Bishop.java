@@ -6,40 +6,40 @@ import gvprojects.chess.model.Player;
 
 /************************************************************
  * CIS 163-07
- * Chess Project
- * Class to handle the behavior of a pawn
+ * Chess Project 
+ * Controls behavior of the Bishop Piece
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
  * @version Mar 8, 2014
  ************************************************************/
-public class Pawn extends ChessPiece {
+public class Bishop extends ChessPiece {
 
 	/************************************************************
-	 * Constructor for Pawn Class
+	 * Constructor for the Bishop Class
 	 * 
 	 * @param p Player that owns this piece
 	 ************************************************************/
-	protected Pawn(Player p) {
+	protected Bishop(Player p) {
 		super(p);
 	}
 
 	/************************************************************
-	 * Returns the piece type, pawn
+	 * Returns that this piece is a Bishop
 	 * 
-	 * @return  Returns "Pawn"
+	 * @return  Returns word Bishop in string form
 	 ************************************************************/
 	@Override
 	public String type() {
-		return "Pawn";
+		return "Bishop";
 	}
 	
 	/************************************************************
-	 * Returns if is a valid move for a pawn
+	 * Returns if this is a valid move for a Bishop or not
 	 * 
 	 * @param move Desired move
 	 * @param board Board being played on
-	 * @return  True if is a valid move for a pawn
+	 * @return  True if is a valid move
 	 ************************************************************/
 	public boolean isValidMove(Move move, IChessPiece[][] board){
 		
