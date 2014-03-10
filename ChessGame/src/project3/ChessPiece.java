@@ -77,4 +77,63 @@ public abstract class ChessPiece implements IChessPiece {
 	@Override
 	public abstract String type();
 
+	/************************************************************
+	 * Method that will check if path is clear for piece to move.
+	 * @param fromR Starting row
+	 * @param fromC Starting column
+	 * @param toR Ending row
+	 * @param toC Ending Column
+	 * @param board Board being played on
+	 * @return  True if path between points is clear of pieces
+	 ************************************************************/
+	public boolean isPathClear(int fromR, int fromC, int toR, 
+			int toC, IChessPiece board[][]) {
+		
+		int start;
+		int end;
+		
+		//Check horizontal path
+		if (fromR == toR) {
+			
+			//Can check either left or right
+			if (fromC > toC) {
+				start = toC + 1;
+				end = fromC;
+			} else {
+				start = fromC + 1;
+				end = toC;
+			}
+			
+			//Loop through horizontal path 
+			while (start < end) {
+				if (board[start][fromR] != null) {
+					return false;
+				}
+				
+				start++;
+			}
+		
+		//Check vertical path
+		} else { 
+			
+			//Can check up and down
+			if (fromR > toR) {
+				start = toR + 1;
+				end = fromR;
+			} else {
+				start = fromR + 1;
+				end = toR;
+			}
+			
+			while (start < end) {
+				if (board[fromC][start] != null) {
+					return false;
+				}
+				
+				start++;
+			}
+		}
+		
+		return true;
+	}
 }
