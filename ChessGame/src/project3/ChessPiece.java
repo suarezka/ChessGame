@@ -92,7 +92,7 @@ public abstract class ChessPiece implements IChessPiece {
 		int start;
 		int end;
 		
-		//Check horizontal path
+		/* Check horizontal path */
 		if (fromR == toR) {
 			
 			//Can check either left or right
@@ -113,7 +113,7 @@ public abstract class ChessPiece implements IChessPiece {
 				start++;
 			}
 		
-		//Check vertical path
+		/* Check vertical path */
 		} else { 
 			
 			//Can check up and down
@@ -132,6 +132,76 @@ public abstract class ChessPiece implements IChessPiece {
 				
 				start++;
 			}
+		}
+		
+		/* Checks diagonal paths */
+		int startR;
+		int startC;
+		
+		//Checks diagonal up
+		if (fromR > toR) {
+			
+			startR = fromR - 1;
+			
+			//Check left up
+			if (fromC > toC) {
+				startC = fromC - 1;
+				
+				while (startR != toR && startC != toC) {
+					if (board[startR][startC] != null) {
+						return false;
+					}
+					
+					startR--;
+					startC--;
+				}
+			
+			//Checks right up
+			} else {
+				startC = fromC + 1;
+				
+				while (startR != toR && startC != toC) {
+					if (board[startR][startC] != null) {
+						return false;
+					}
+					
+					startR--;
+					startC++;
+				}
+			}
+			
+		//Checks diagonal down	
+		} else {
+			
+			startR = fromR + 1;
+			
+			//Checks left down
+			if (fromR < toR) {
+				startC = fromC - 1;
+				
+				while (startR != toR && startC != toC) {
+					if (board[startR][startC] != null) {
+						return false;
+					}
+					
+					startR++;
+					startC--;
+				} 
+				
+			//Checks right down
+			} else {
+				startC = fromC + 1;
+				
+				while (startR != toR && startC != toC) {
+					if (board[startR][startC] != null) {
+						return false;
+					}
+					
+					startR++;
+					startC++;
+				}
+			}
+			
 		}
 		
 		return true;
