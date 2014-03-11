@@ -55,7 +55,7 @@ public class Rook extends ChessPiece {
 
 
 		//Check if move is either front/back or side to side
-		if (fromC != toC || fromR != toR) {
+		if (fromR != toR && fromC != toC) {
 			return false;
 		}
 
