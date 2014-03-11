@@ -140,7 +140,7 @@ public abstract class ChessPiece implements IChessPiece {
 			}
 			
 			while (start < end) {
-				if (board[fromC][start] != null) {
+				if (board[start][fromC] != null) {
 					return false;
 				}
 				
