@@ -54,6 +54,20 @@ public class King extends ChessPiece {
 		int toC = move.toColumn;
 		int toR = move.toRow;
 		
+		//TODO: Decide if this method is better or other ones
+		
+		//Coordinates for possible moves by a king object
+		final int[] MOVE_ROW = {-1, -1, 0, 1, 1, 1, 0, -1};
+		final int[] MOVE_COL = {0, 1, 1, 1, 0, -1, -1, -1};
+		
+		//Checks only possible moves for match with desired move
+		//Returns true if all previous conditions met as well as this
+		for(int k = 0; k < MOVE_ROW.length; k++){
+			if(fromR + MOVE_ROW[k] == toR && fromC + MOVE_COL[k] == toC){
+				return true;
+			}
+		}
+		
 		//Checks if one space up or down
 		if (toR != fromR - 1 || toR != fromR + 1) {
 			return false;
