@@ -77,10 +77,16 @@ public abstract class ChessPiece implements IChessPiece {
 	@Override
 	public abstract String type();
 	
-	//TODO: Make public methid to decide which private to use
+	//TODO: Make public method to decide which private to use
 	public boolean isPathClear(int fromR, int fromC, int toR, 
 			int toC, IChessPiece board[][]) {
 		
+		//Piece is moving horizontal or vertical
+		if (fromR == toR || fromC == toR) {
+			isPathClearHorizontal(fromR, fromC, toR, toC, board);
+		} else {
+			isPathClearDiagonal(fromR, fromC, toR, toC, board);
+		}
 		return false;
 	}
 
