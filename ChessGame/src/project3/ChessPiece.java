@@ -134,6 +134,21 @@ public abstract class ChessPiece implements IChessPiece {
 			}
 		}
 		
+		return true;
+	}
+	
+	/************************************************************
+	 * Method that will check if path is clear for piece to move.
+	 * @param fromR Starting row
+	 * @param fromC Starting column
+	 * @param toR Ending row
+	 * @param toC Ending Column
+	 * @param board Board being played on
+	 * @return  True if path between points is clear of pieces
+	 ************************************************************/
+	public boolean isPathClearDiagonal(int fromR, int fromC, int toR, 
+			int toC, IChessPiece board[][]) {
+		
 		/* Checks diagonal paths */
 		int startR;
 		int startC;
