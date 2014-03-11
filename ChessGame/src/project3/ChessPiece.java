@@ -76,6 +76,13 @@ public abstract class ChessPiece implements IChessPiece {
 	 ************************************************************/
 	@Override
 	public abstract String type();
+	
+	//TODO: Make public methid to decide which private to use
+	public boolean isPathClear(int fromR, int fromC, int toR, 
+			int toC, IChessPiece board[][]) {
+		
+		return false;
+	}
 
 	/************************************************************
 	 * Method that will check if path is clear for piece to move.
@@ -86,7 +93,7 @@ public abstract class ChessPiece implements IChessPiece {
 	 * @param board Board being played on
 	 * @return  True if path between points is clear of pieces
 	 ************************************************************/
-	public boolean isPathClear(int fromR, int fromC, int toR, 
+	private boolean isPathClearHorizontal(int fromR, int fromC, int toR, 
 			int toC, IChessPiece board[][]) {
 		
 		int start;
@@ -146,7 +153,7 @@ public abstract class ChessPiece implements IChessPiece {
 	 * @param board Board being played on
 	 * @return  True if path between points is clear of pieces
 	 ************************************************************/
-	public boolean isPathClearDiagonal(int fromR, int fromC, int toR, 
+	private boolean isPathClearDiagonal(int fromR, int fromC, int toR, 
 			int toC, IChessPiece board[][]) {
 		
 		/* Checks diagonal paths */
