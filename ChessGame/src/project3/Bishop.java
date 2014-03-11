@@ -62,21 +62,4 @@ public class Bishop extends ChessPiece {
 
 		return true;
 	}
-
-	/************************************************************
-	 * Helper method to allow queen to use same logic as bishop
-	 * 
-	 * @param fromR Starting row
-	 * @param fromC Starting column
-	 * @param toR ending row
-	 * @param toC ending column
-	 * @param board Board being played on
-	 * @return  True if path between points is clear
-	 ************************************************************/
-	public static boolean isPathClear(int fromR, int fromC, int toR,
-			int toC, IChessPiece[][] board){
-		//TODO: Make this work in two directions and add to queen class
-		return true;
-	}
-
 }
