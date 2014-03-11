@@ -59,6 +59,7 @@ public class Rook extends ChessPiece {
 			return false;
 		}
 
+		//Check if horizontal / vertical path is clear
 		if(!isPathClear(fromR, fromC, toR, toC, board)){
 			return false;
 		}

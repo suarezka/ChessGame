@@ -59,6 +59,11 @@ public class Bishop extends ChessPiece {
 		if(Math.abs(fromC - toC) != Math.abs(fromR - toR)){
 			return false;
 		}
+		
+		//Check if diagonal path is clear
+		if (!isPathClearDiagonal(fromR, fromC, toR, toC, board)) {
+			return false;
+		}
 
 		return true;
 	}

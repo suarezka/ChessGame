@@ -138,7 +138,7 @@ public abstract class ChessPiece implements IChessPiece {
 	}
 	
 	/************************************************************
-	 * Method that will check if path is clear for piece to move.
+	 * Method to check if diagonal path is clear for piece to move.
 	 * @param fromR Starting row
 	 * @param fromC Starting column
 	 * @param toR Ending row
