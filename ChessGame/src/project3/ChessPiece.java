@@ -88,7 +88,7 @@ public abstract class ChessPiece implements IChessPiece {
 		} else {
 			isPathClearDiagonal(fromR, fromC, toR, toC, board);
 		}
-		return false;
+		return true;
 	}
 
 	/************************************************************
