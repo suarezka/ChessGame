@@ -57,12 +57,12 @@ public class RookTest extends ChessPieceTest {
    @Test
    public void canMoveDown() throws Exception {
 	   board[1][1] = piece;
-	   assertTrue("Rook Test 1", piece.isValidMove(new Move(1,1,5,1),  board));
+	   assertTrue("Should be possible Rook move down", piece.isValidMove(new Move(1,1,5,1), board));
    }
    
    @Test
    public void isRook() throws Exception {
-	   assertEquals("Rook Test 1", piece.type().equals("Rook"));
+	   assertEquals("Rook", piece.type());
    }
    
    @Test
