@@ -122,9 +122,9 @@ public class RookTest extends ChessPieceTest {
 	   
 	   board[5][2] = piece;
 	   board[4][2] = otherPiece;
+	   Move rookUp = new Move(5, 2, 3, 2);
 	   
-	   assertFalse("Rook pieceInTheWay Test 3", piece.isValidMove(
-			   new Move(5, 2, 3, 2), board));
+	   assertFalse("Rook pieceInTheWay Test 3", piece.isValidMove(rookUp, board));
    }
    
    @Test
@@ -133,9 +133,9 @@ public class RookTest extends ChessPieceTest {
 	   
 	   board[2][3] = piece;
 	   board[4][3] = otherPiece;
+	   Move rookDown = new Move(2, 3, 4, 3);
 	   
-	   assertFalse("Rook pieceInTheWay Test 4", piece.isValidMove(
-			   new Move(2, 3, 4, 3), board));
+	   assertFalse("Rook pieceInTheWay Test 4", piece.isValidMove(rookDown, board));
    }
    
    @Test

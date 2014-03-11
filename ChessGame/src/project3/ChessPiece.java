@@ -132,13 +132,13 @@ public abstract class ChessPiece implements IChessPiece {
 			//Can check up and down
 			if (fromR > toR) {
 				start = toR;
-				end = fromR;
+				end = fromR - 1;
 			} else {
 				start = fromR + 1;
 				end = toR;
 			}
 			
-			while (start < end) {
+			while (start <= end) {
 				if (board[start][fromC] != null) {
 					return false;
 				}
