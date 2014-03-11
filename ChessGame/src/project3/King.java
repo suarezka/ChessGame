@@ -68,37 +68,7 @@ public class King extends ChessPiece {
 			}
 		}
 		
-		//Checks if one space up or down
-		if (toR != fromR - 1 || toR != fromR + 1) {
-			return false;
-		}
-		
-		//Checks if one space left or right
-		if (toC != fromC + 1 || toC != fromC - 1) {
-			return false;
-		}
-		
-		//Checks if one space diagonal up
-		if (toR != fromR - 1 && (toC != fromC - 1 || toC != fromC + 1)) {
-			return false;
-		}
-		
-		//Checks if one space diagonal down
-		if (toR != fromR + 1 && (toC != fromC - 1 || toC != fromC + 1)) {
-			return false;
-		}
-		
-		//Checks if horizontal and vertical path is clear
-		if (!isPathClear(fromR, fromC, toR, toC, board)) {
-			return false;
-		}
-		
-		//Checks if diagonal path is clear
-		if (!isPathClearDiagonal(fromR, fromC, toR, toC, board)) {
-			return false;
-		}
-		
-		return true;
+		return false;
 	}
 
 }
