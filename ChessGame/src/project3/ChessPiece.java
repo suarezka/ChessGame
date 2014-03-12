@@ -48,14 +48,20 @@ public abstract class ChessPiece implements IChessPiece {
 		if(toC == fromC && toR == fromR)
 			return false;
 		
+		//Check if from location has piece
+		if (board[fromR][fromC] == null) {
+			throw new IllegalArgumentException ("No piece is there.");
+		}
+		
 		//TODO: This code makes the test cases to not work so need to rework it
 		//Checking if destination is occupied by same team
 		//if(board[toR][toC].player() == owner)
 			//return false;
 		
 		//Ensuring that the piece is at the from location
-		if(board[fromR][fromC] != this)
-			return false;
+		if(board[fromR][fromC] != this) {
+			throw new IllegalArgumentException("Not expected piece.");
+		}
 		
 		return true;
 	}
@@ -78,7 +84,21 @@ public abstract class ChessPiece implements IChessPiece {
 	@Override
 	public abstract String type();
 	
+	
+	
+	
 	//TODO: Make public method to decide which private to use
+	/************************************************************
+	 * Public method that determines which private method to use
+	 * to check if the path is clear.
+	 *
+	 * @param fromR
+	 * @param fromC
+	 * @param toR
+	 * @param toC
+	 * @param board
+	 * @return
+	 ************************************************************/
 	public boolean isPathClear(int fromR, int fromC, int toR, 
 			int toC, IChessPiece board[][]) {
 		
@@ -92,6 +112,7 @@ public abstract class ChessPiece implements IChessPiece {
 
 	/************************************************************
 	 * Method that will check if path is clear for piece to move.
+	 * 
 	 * @param fromR Starting row
 	 * @param fromC Starting column
 	 * @param toR Ending row
@@ -152,6 +173,7 @@ public abstract class ChessPiece implements IChessPiece {
 	
 	/************************************************************
 	 * Method to check if diagonal path is clear for piece to move.
+	 * 
 	 * @param fromR Starting row
 	 * @param fromC Starting column
 	 * @param toR Ending row
