@@ -110,8 +110,8 @@ public abstract class ChessPiece implements IChessPiece {
 			
 			//Can check either left or right
 			if (fromC > toC) {
-				start = toC + 1;
-				end = fromC;
+				start = toC;
+				end = fromC - 1;
 			} else {
 				start = fromC + 1;
 				end = toC;
@@ -119,7 +119,7 @@ public abstract class ChessPiece implements IChessPiece {
 			
 			//Loop through horizontal path 
 			while (start < end) {
-				if (board[start][fromR] != null) {
+				if (board[fromR][start] != null) {
 					return false;
 				}
 				
