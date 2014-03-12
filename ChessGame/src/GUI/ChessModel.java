@@ -1,6 +1,6 @@
 package GUI;
 
-import project3.ChessPiece;
+import project3.Rook;
 import gvprojects.chess.model.IChessModel;
 import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
@@ -25,6 +25,7 @@ public class ChessModel implements IChessModel {
 	public ChessModel() {
 		//Create game board
 		board = new IChessPiece[8][8];
+		
 		
 		//Set up black pieces
 		board[0][0] = rookB;
