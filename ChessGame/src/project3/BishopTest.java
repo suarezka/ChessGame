@@ -42,5 +42,18 @@ public class BishopTest extends ChessPieceTest {
 	public void typeTest() throws Exception {
 		assertEquals("Bishop", piece.type());
 	}
-
+	
+	@Test
+	   public void canMoveInRDownDiagonal() throws Exception {
+	      board[1][1] = piece;
+	      Move bishopDRight = new Move(1,1,3,3);
+	      assertTrue("Bishop RightDown Diagonal Test", piece.isValidMove(bishopDRight, board));
+	   }
+	
+	@Test
+	   public void canMoveInRUpDiagonal() throws Exception {
+	      board[3][3] = piece;
+	      Move bishopUpRight = new Move(3,3,1,5);
+	      assertTrue("Bishop RightUp Diagonal Test", piece.isValidMove(bishopUpRight, board));
+	   }
 }

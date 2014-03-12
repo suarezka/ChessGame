@@ -59,7 +59,7 @@ public class Queen extends ChessPiece{
 			return false;
 		}
 		
-		if (!isPathClearDiagonal(fromR, fromC, toR, toC, board)) {
+		if (!isPathClear(fromR, fromC, toR, toC, board)) {
 			return false;
 		}
 		

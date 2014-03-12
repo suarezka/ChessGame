@@ -61,7 +61,7 @@ public class Bishop extends ChessPiece {
 		}
 		
 		//Check if diagonal path is clear
-		if (!isPathClearDiagonal(fromR, fromC, toR, toC, board)) {
+		if (!isPathClear(fromR, fromC, toR, toC, board)) {
 			return false;
 		}
 
