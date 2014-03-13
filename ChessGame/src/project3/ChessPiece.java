@@ -53,10 +53,9 @@ public abstract class ChessPiece implements IChessPiece {
 			throw new IllegalArgumentException ("No piece is there.");
 		}
 		
-		//TODO: This code makes the test cases to not work so need to rework it
 		//Checking if destination is occupied by same team
-		//if(board[toR][toC].player() == owner)
-			//return false;
+		if(board[toR][toC] != null && board[toR][toC].player() == owner)
+			return false;
 		
 		//Ensuring that the piece is at the from location
 		if(board[fromR][fromC] != this) {
