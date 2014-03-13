@@ -62,8 +62,31 @@ public class KnightTest extends ChessPieceTest {
 				new Move(0, 0, -1, 2), board));
 	}
 	
+	//TODO: Broken, un break
 	@Test
 	public void invalidMoves() throws Exception {
-		//TODO Add loop that checks all spots on board for validity
+		int fromR = 3;
+		int fromC = 5;
+		
+		board[fromR][fromC] = piece;
+		
+		//Arrays of proper moves
+		int[] rMoves = {-2, -1, 1, 2, 2, 1, -1, -2};
+		int[] cMoves = {1, 2, 2, 1, -1, -2, -2, -1};
+		
+		for(int k = 0; k < board.length; k++){
+			for(int m = 0; m < board[0].length; m++){
+				Move tempMove = new Move(fromR, fromC, k, m);
+				for(int p = 0; p < rMoves.length; p++){
+					if(rMoves[p] + fromR == k && cMoves[p] + fromC == m){
+						assertTrue("Knight true loop test", 
+								piece.isValidMove(tempMove, board));
+					}else{
+						assertFalse("Knight false loop test", 
+								piece.isValidMove(tempMove, board));
+					}
+				}
+			}
+		}
 	}
 }
