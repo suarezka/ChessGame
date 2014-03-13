@@ -225,7 +225,8 @@ public abstract class ChessPiece implements IChessPiece {
 			startR = fromR + 1;
 			
 			//Checks left down
-			if (fromR < toR) {
+			if (fromR > toR) {
+				//TODO
 				startC = fromC - 1;
 				
 				while (startR != toR && startC != toC) {
@@ -241,7 +242,7 @@ public abstract class ChessPiece implements IChessPiece {
 			} else {
 				startC = fromC + 1;
 				
-				while (startR != toR && startC != toC) {
+				while (startR < toR && startC < toC) {
 					if (board[startR][startC] != null) {
 						return false;
 					}
