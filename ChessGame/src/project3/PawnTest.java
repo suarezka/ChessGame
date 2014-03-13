@@ -40,5 +40,14 @@ public class PawnTest extends ChessPieceTest {
 	public void typeTest() throws Exception {
 		assertEquals("Pawn", piece.type());
 	}
+	
+	@Test
+	public void regularCaptureDown(){
+		board[2][5] = piece;
+		IChessPiece otherPiece = new Pawn(Player.BLACK);
+		board[3][4] = otherPiece;
+		Move capture = new Move(2, 5, 3, 4);
+		assertTrue("Pawn Capture Down Test", piece.isValidMove(capture, board));
+	}
 
 }

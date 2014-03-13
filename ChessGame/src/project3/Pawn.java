@@ -73,8 +73,18 @@ public class Pawn extends ChessPiece {
 			}
 		}
 		
-		if(Math.abs(fromC - toC) > 1){
-			//TODO: Make sure this only happens when attacking
+		if(Math.abs(fromC - toC) > 1 ){
+			return false;
+		}
+		
+		//Capture stuff
+		if(Math.abs(fromC - toC) > 0 && board[toR][toC].player() != 
+				this.player().next()){
+			return false;
+		}
+		
+		//Doesnt allow double more no row movement when attacking
+		if(Math.abs(fromC - toC) > 0 && Math.abs(fromR - toR) != 1){
 			return false;
 		}
 		
@@ -85,8 +95,6 @@ public class Pawn extends ChessPiece {
 		if(Player.BLACK == player() && fromR - toR > 0){
 			return false;
 		}
-
-		//TODO: Add a method that allows attacks diagonally
 		
 		return true;
 	}
