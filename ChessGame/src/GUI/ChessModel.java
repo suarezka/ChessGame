@@ -64,7 +64,7 @@ public class ChessModel implements IChessModel {
 	
 	@Override
 	public Player currentPlayer() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
