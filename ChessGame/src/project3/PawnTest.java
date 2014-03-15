@@ -43,10 +43,10 @@ public class PawnTest extends ChessPieceTest {
 	
 	@Test
 	public void regularCaptureDown(){
-		board[2][5] = piece;
+		board[3][4] = piece;
 		IChessPiece otherPiece = new Pawn(Player.BLACK);
-		board[3][4] = otherPiece;
-		Move capture = new Move(2, 5, 3, 4);
+		board[2][5] = otherPiece;
+		Move capture = new Move(3, 4, 2, 5);
 		assertTrue("Pawn Capture Down Test", piece.isValidMove(capture, board));
 	}
 
