@@ -126,4 +126,14 @@ public class KingTest extends ChessPieceTest {
 		assertFalse("King doesnt move to check test", 
 				piece.isValidMove(new Move(4 ,2, 4, 3), board));
 	}
+	
+	
+	//TODO made an oopsy here
+	@Test
+	public void cantAttackOtherKing() throws Exception {
+		board[6][2] = piece;
+		board[6][4] = new King(piece.player().next());
+		
+		assertFalse("Kings Dont Attack", piece.isValidMove(new Move(6, 2, 6, 3), board));
+	}
 }
