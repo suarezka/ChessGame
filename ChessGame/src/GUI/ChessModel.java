@@ -22,6 +22,7 @@ public class ChessModel implements IChessModel {
 	public ChessModel() {
 		//Create game board
 		board = new IChessPiece[8][8];
+		curPlayer = Player.WHITE;
 		gameInProgress = true;
 		
 		//Set white pieces on board
@@ -64,8 +65,7 @@ public class ChessModel implements IChessModel {
 	
 	@Override
 	public Player currentPlayer() {
-		
-		return null;
+		return curPlayer;
 	}
 
 	@Override
