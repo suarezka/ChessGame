@@ -87,4 +87,19 @@ public class KnightTest extends ChessPieceTest {
 			}
 		}
 	}
+	
+	@Test
+	public void enemyIsNearTest() throws Exception {
+		for(int r = 0; r < board.length; r++){
+			for(int c = 0; c < board.length; c++){
+				board[r][c] = new Knight(piece.player().next());
+			}
+		}
+		
+		board[3][3] = piece;
+		board[5][4] = null;
+		
+		assertTrue("Enemy is near test Knight", 
+				piece.isValidMove(new Move(3, 3, 5, 4), board));
+	}
 }

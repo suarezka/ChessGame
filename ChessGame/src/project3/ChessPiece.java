@@ -46,9 +46,6 @@ public abstract class ChessPiece implements IChessPiece {
 			int toC = move.toColumn;
 			int toR = move.toRow;
 
-			int bLenRow = board.length;
-			int bLenCol = board[0].length;
-
 			//Makes sure a move is happening
 			if(toC == fromC && toR == fromR)
 				return false;

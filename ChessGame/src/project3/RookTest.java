@@ -39,26 +39,26 @@ public class RookTest extends ChessPieceTest {
    @Test
    public void canMoveInRight() throws Exception {
       board[1][1] = piece;
-      Move rookRight = new Move(1,1,1,6);
+      Move rookRight = new Move(1,1,1,2);
       assertTrue("Rook Test 1", piece.isValidMove(rookRight, board));
    }
 
    @Test
    public void canMoveInLeft() throws Exception {
       board[4][4] = piece;
-      assertTrue("Rook Test 1", piece.isValidMove(new Move(4, 4, 4, 1), board));
+      assertTrue("Rook Test 1", piece.isValidMove(new Move(4, 4, 4, 3), board));
    }
    
    @Test
    public void canMoveUp() throws Exception {
 	   board[5][5] = piece;
-	   assertTrue("Rook Test 1", piece.isValidMove(new Move(5,5,2,5), board));
+	   assertTrue("Rook Test 1", piece.isValidMove(new Move(5,5,4,5), board));
    }
 
    @Test
    public void canMoveDown() throws Exception {
 	   board[1][1] = piece;
-	   assertTrue("Should be possible Rook move down", piece.isValidMove(new Move(1,1,5,1), board));
+	   assertTrue("Should be possible Rook move down", piece.isValidMove(new Move(1,1,2,1), board));
    }
    
    @Test
@@ -176,5 +176,33 @@ public class RookTest extends ChessPieceTest {
 	   
 	   assertTrue("Rook enemyIsNearTest", 
 			   piece.isValidMove(new Move(0,1,2,1), board));
+   }
+   
+   @Test
+   public void longDownMove() throws Exception {
+	   board[0][2] = piece;
+	   Move move = new Move(0,2,7,2);
+	   assertTrue("Long Down Rook Test", piece.isValidMove(move, board));
+   }
+   
+   @Test
+   public void longUpMove() throws Exception {
+	   board[7][2] = piece;
+	   Move move = new Move(7,2,0,2);
+	   assertTrue("Long Down Rook Test", piece.isValidMove(move, board));
+   }
+   
+   @Test
+   public void longRightMove() throws Exception {
+	   board[0][0] = piece;
+	   Move move = new Move(0,0,0,7);
+	   assertTrue("Long Down Rook Test", piece.isValidMove(move, board));
+   }
+   
+   @Test
+   public void longLeftMove() throws Exception {
+	   board[0][7] = piece;
+	   Move move = new Move(0,7,0,0);
+	   assertTrue("Long Down Rook Test", piece.isValidMove(move, board));
    }
 }
