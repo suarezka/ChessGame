@@ -84,6 +84,11 @@ public class OurGUI implements ActionListener {
 		frame.setVisible(true);
 	}
 	
+	/****************************************************************
+	 * Set pieces in the starting positions
+	 * 
+	 * @param board 2D JButton array
+	 ****************************************************************/
 	public void setPieces(JButton[][] board) {
 		
 		//Set black pieces
