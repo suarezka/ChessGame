@@ -21,10 +21,11 @@ import javax.swing.border.BevelBorder;
  */
 @SuppressWarnings("serial")
 public class GVTile extends JButton {
-    private static final String IMAGE_DIR = "/Users/dulimarh/workspace/ChessGUIDemo/images/";
+    private static final String IMAGE_DIR = "/Users/Kaye/git/ChessGame3/ChessGame/scr/GUI/images/";
     private static final int SIZE = 64;
     public enum ImageType {
         NO_IMAGE,
+        ROOK,
         BISHOP,
 }  
     
@@ -38,12 +39,13 @@ public class GVTile extends JButton {
         File imgFile;
         try {
             BufferedImage temp;
-            imgFile = new File (IMAGE_DIR + "Bishop.png");
+            imgFile = new File (IMAGE_DIR + "b_bish.png");
             temp = ImageIO.read(imgFile);
-            final int W = temp.getWidth();
-            final int H = temp.getHeight();
-            whiteBishop = temp.getSubimage(0, 0, W/2, H);
-            blackBishop = temp.getSubimage(W/2, 0, W/2, H);
+            blackBishop = temp;
+            //final int W = temp.getWidth();
+            //final int H = temp.getHeight();
+            //whiteBishop = temp.getSubimage(0, 0, W/2, H);
+            //blackBishop = temp.getSubimage(W/2, 0, W/2, H);
             
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -68,6 +70,9 @@ public class GVTile extends JButton {
     public void showImage (ImageType kind, boolean isWhitePiece)
     {
         switch (kind) {
+        case ROOK:
+        	//img = isWhitePiece ? whiteRook : blackRook;
+        	//break;
         case BISHOP:
             img = isWhitePiece ? whiteBishop : blackBishop;
             break;
