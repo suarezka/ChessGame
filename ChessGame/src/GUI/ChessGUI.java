@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,31 +18,38 @@ import GUI.GVTile.ImageType;
 
 public class ChessGUI implements ActionListener {
     private JFrame top;
-    private GVTile[][] chessBoard;
+//    private GVTile[][] chessBoard;
+    private JButton[][] chessBoard;
     private int firstRow, firstCol, secondRow, secondCol;
     private JLabel status;
     //private HansButton doit;
+    
+    private ImageIcon bBish = loadIcon("images\\b_bish.png");
     
     public ChessGUI()
     {
         firstRow = firstCol = -1;
         top = new JFrame();
         JPanel pan = new JPanel();
-        top.add(pan, BorderLayout.CENTER);
         
         pan.setLayout(new GridLayout(8, 8));
-        chessBoard = new GVTile[8][8];
+//        chessBoard = new GVTile[8][8]; TODO YOU MIGHT WANT THIS
+        chessBoard = new JButton[8][8];
         for (int k = 0; k < chessBoard.length; k++)
             for (int m = 0; m < chessBoard[k].length; m++)
             {
-                chessBoard[k][m] = new GVTile((k + m) % 2 == 0 ? true : false);
-                pan.add(chessBoard[k][m]);
+//                chessBoard[k][m] = new GVTile((k + m) % 2 == 0); TODO GVTILE STUFF
+            	chessBoard[k][m] = new JButton();
                 chessBoard[k][m].addActionListener(this);
                 //chessBoard[k][m].setBackground(Color.yellow);
-                chessBoard[k][m].showImage(ImageType.BISHOP, true);
+//                chessBoard[k][m].showImage(ImageType.BISHOP, true);
+                chessBoard[k][m].setIcon(bBish);
                 //if (k == m)
                     //chessBoard[k][m].showImage (GVTile.ImageType.BISHOP, true);
+                pan.add(chessBoard[k][m]);
             }
+        
+        top.add(pan, BorderLayout.CENTER);
         status = new JLabel(" Hi ");
         top.add (status, BorderLayout.SOUTH);
         top.pack();
@@ -71,13 +80,30 @@ public class ChessGUI implements ActionListener {
                         secondCol = m;
                         status.setText(String.format ("(%d,%d) ==> (%d,%d)",
                                 firstRow, firstCol, secondRow, secondCol));
-                        BufferedImage img = chessBoard[firstRow][firstCol].getImage();
-                        chessBoard[firstRow][firstCol].setImage(null);
-                        chessBoard[secondRow][secondCol].setImage(img);
-                        firstRow = firstCol = -1;
+//                        BufferedImage img = chessBoard[firstRow][firstCol].getImage();
+//                        chessBoard[firstRow][firstCol].setImage(null);
+//                        chessBoard[secondRow][secondCol].setImage(img);
+//                        firstRow = firstCol = -1;
                     }
                 }
             }
         }
+    }
+    
+    /****************************************************************
+     * Static method to load the ImageIcon from the given location.
+     *
+     * TODO you might not need this
+     *
+     * @param name Name of the file.
+     * @return the requested image.
+     ***************************************************************/
+    public static ImageIcon loadIcon(String name) {
+    	java.net.URL imgURL = ChessGUI.class.getResource(name);
+    	if (imgURL == null) {
+    		throw new RuntimeException("Icon resource not found.");
+    	}
+
+    	return new ImageIcon(imgURL);
     }
 }

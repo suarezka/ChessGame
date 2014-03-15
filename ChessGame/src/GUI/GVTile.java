@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
 
@@ -21,7 +22,7 @@ import javax.swing.border.BevelBorder;
  */
 @SuppressWarnings("serial")
 public class GVTile extends JButton {
-    private static final String IMAGE_DIR = "/Users/Kaye/git/ChessGame3/ChessGame/scr/images/";
+    private static final String IMAGE_DIR = "images\\";
     private static final int SIZE = 64;
     public enum ImageType {
         NO_IMAGE,
@@ -37,38 +38,30 @@ public class GVTile extends JButton {
     static { 
     	File imgFile;
     	
-    	try {
-    		BufferedImage image;
-        	imgFile = new File (IMAGE_DIR + "b_bish.png");
-        	image = ImageIO.read(imgFile);
-        	blackBishop = image;
-    	} catch (IOException e) {
-    		e.printStackTrace();
-    	}
+    	BufferedImage image;
+		ImageIcon icon = loadIcon(IMAGE_DIR + "b_bish.png");
+		image = convertToBuffedImage(icon);
+		blackBishop = image;
     }
-    
-    /*
-    static {
-        size = 44;
-        File imgFile;
-        try {
-            BufferedImage temp;
-            imgFile = new File (IMAGE_DIR + "b_bish.png");
-            temp = ImageIO.read(imgFile);
-            blackBishop = temp;
-            
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    } */
     
     public GVTile (boolean useDarkBg)
     {
         this (ImageType.NO_IMAGE, false, useDarkBg);
     }
     
-    public GVTile(ImageType kind, boolean isWhitePiece, boolean useDarkBg)
+    private static BufferedImage convertToBuffedImage(ImageIcon icon) {
+    	BufferedImage bi = new BufferedImage(
+    			icon.getIconWidth(),
+    			icon.getIconHeight(),
+    			BufferedImage.TYPE_INT_RGB);
+    	Graphics g = bi.createGraphics();
+    	// paint the Icon to the BufferedImage.
+    	icon.paintIcon(null, g, 0,0);
+    	g.dispose();
+    	return bi;
+    }
+
+	public GVTile(ImageType kind, boolean isWhitePiece, boolean useDarkBg)
     {
         
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -97,9 +90,6 @@ public class GVTile extends JButton {
         repaint();
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-     */
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(back);
@@ -107,6 +97,21 @@ public class GVTile extends JButton {
         if (img != null) {
             g.drawImage(img, 0, 0, SIZE, SIZE, 0, 0, img.getWidth(), img.getHeight(), null);
         }
+    }
+    
+    /****************************************************************
+     * Static method to load the ImageIcon from the given location.
+     *
+     * @param name Name of the file.
+     * @return the requested image.
+     ***************************************************************/
+    public static ImageIcon loadIcon(String name) {
+    	java.net.URL imgURL = ChessGUI.class.getResource(name);
+    	if (imgURL == null) {
+    		throw new RuntimeException("Icon resource not found.");
+    	}
+
+    	return new ImageIcon(imgURL);
     }
     
 }
