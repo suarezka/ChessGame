@@ -20,7 +20,7 @@ public class Queen extends ChessPiece{
 	 * 
 	 * @param p Player that owns this piece
 	 ************************************************************/
-	protected Queen(Player p) {
+	public Queen(Player p) {
 		super(p);
 	}
 

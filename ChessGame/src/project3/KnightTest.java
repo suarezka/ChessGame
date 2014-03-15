@@ -19,7 +19,7 @@ import org.junit.Test;
 public class KnightTest extends ChessPieceTest {
 
 	@Override
-	protected IChessPiece make(Player p) {
+	public IChessPiece make(Player p) {
 		return new Knight(p);
 	}
 

@@ -23,7 +23,7 @@ public abstract class ChessPiece implements IChessPiece {
 	 * 
 	 * @param p Player that owns this piece
 	 ************************************************************/
-	protected ChessPiece (Player p) {
+	public ChessPiece (Player p) {
 		owner = p;
 	}
 

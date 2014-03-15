@@ -20,7 +20,7 @@ public class Bishop extends ChessPiece {
 	 * 
 	 * @param p Player that owns this piece
 	 ************************************************************/
-	protected Bishop(Player p) {
+	public Bishop(Player p) {
 		super(p);
 	}
 

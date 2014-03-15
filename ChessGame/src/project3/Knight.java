@@ -20,7 +20,7 @@ public class Knight extends ChessPiece{
 	 * 
 	 * @param p Player who owns the chess Piece
 	 ************************************************************/
-	protected Knight(Player p) {
+	public Knight(Player p) {
 		super(p);
 	}
 

@@ -20,7 +20,7 @@ public class Rook extends ChessPiece {
 	 * 
 	 * @param p Player to be owning this rook
 	 ************************************************************/
-	protected Rook(Player p) {
+	public Rook(Player p) {
 		super(p);
 	}
 

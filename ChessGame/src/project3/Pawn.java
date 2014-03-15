@@ -20,7 +20,7 @@ public class Pawn extends ChessPiece {
 	 * 
 	 * @param p Player that owns this piece
 	 ************************************************************/
-	protected Pawn(Player p) {
+	public Pawn(Player p) {
 		super(p);
 	}
 

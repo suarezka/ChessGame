@@ -38,7 +38,7 @@ public class ChessGUI implements ActionListener {
                 chessBoard[k][m] = new GVTile((k + m) % 2 == 0 ? true : false);
                 pan.add(chessBoard[k][m]);
                 chessBoard[k][m].addActionListener(this);
-               // chessBoard[k][m].setBackground(Color.yellow);
+                //chessBoard[k][m].setBackground(Color.yellow);
                 //chessBoard[k][m].showImage(ImageType.BISHOP);
                 if (k == m)
                     chessBoard[k][m].showImage (GVTile.ImageType.BISHOP, true);
