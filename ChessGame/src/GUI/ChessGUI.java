@@ -28,8 +28,6 @@ public class ChessGUI implements ActionListener {
         JPanel pan = new JPanel();
         top.add(pan, BorderLayout.CENTER);
         
-        //doit = new HansButton("Hello");
-        //top.add(doit, BorderLayout.NORTH);
         pan.setLayout(new GridLayout(8, 8));
         chessBoard = new GVTile[8][8];
         for (int k = 0; k < chessBoard.length; k++)
@@ -39,9 +37,9 @@ public class ChessGUI implements ActionListener {
                 pan.add(chessBoard[k][m]);
                 chessBoard[k][m].addActionListener(this);
                 //chessBoard[k][m].setBackground(Color.yellow);
-                //chessBoard[k][m].showImage(ImageType.BISHOP);
-                if (k == m)
-                    chessBoard[k][m].showImage (GVTile.ImageType.BISHOP, true);
+                chessBoard[k][m].showImage(ImageType.BISHOP, true);
+                //if (k == m)
+                    //chessBoard[k][m].showImage (GVTile.ImageType.BISHOP, true);
             }
         status = new JLabel(" Hi ");
         top.add (status, BorderLayout.SOUTH);
