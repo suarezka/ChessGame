@@ -87,7 +87,12 @@ public class ChessModel implements IChessModel {
 
 	@Override
 	public void move(Move move) {
+		if (!isValidMove(move)) {
+			throw new IllegalArgumentException("Not a valid move");
+		}
+		
 		board[move.fromRow][move.fromColumn] = board[move.fromRow][move.fromColumn];
+		curPlayer.next();
 	}
 
 	@Override
