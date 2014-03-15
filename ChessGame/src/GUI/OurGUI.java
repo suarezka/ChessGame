@@ -1,5 +1,7 @@
 package GUI;
 
+import gvprojects.chess.model.IChessModel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,11 +31,26 @@ public class OurGUI implements ActionListener {
 	private JPanel panel;
 	private JButton[][] chessBoard;
 	private JLabel status;
+	IChessModel game;
 	
 	private static final int IMAGE_SIZE = 64;
 	
 	//Images for black pieces
+	private ImageIcon b_Rook = loadIcon("images\\b_rook.png");
+	private ImageIcon b_Knight = loadIcon("images\\b_knight.png");
+	private ImageIcon b_Bish = loadIcon("images\\b_bish.png");
+	private ImageIcon b_Queen = loadIcon("images\\b_queen.png");
+	private ImageIcon b_King = loadIcon("images\\b_king.png");
+	private ImageIcon b_Pawn = loadIcon("images\\b_pawn.png");
+	
+	//Images for white pieces
+	private ImageIcon w_Rook = loadIcon("images\\w_rook.png");
+	private ImageIcon w_Knight = loadIcon("images\\w_knight.png");
 	private ImageIcon w_Bish = loadIcon("images\\w_bish.png");
+	private ImageIcon w_Queen = loadIcon("images\\w_queen.png");
+	private ImageIcon w_King = loadIcon("images\\w_king.png");
+	private ImageIcon w_Pawn = loadIcon("images\\w_pawn.png");
+	
 	
 	public OurGUI() {
 		frame = new JFrame();
@@ -56,6 +73,9 @@ public class OurGUI implements ActionListener {
 			}
 		}
 		
+		setPieces(chessBoard);
+		game = new ChessModel();
+		
 		frame.add(panel, BorderLayout.CENTER);
 		status = new JLabel("Welcome! Let's play CHESS!");
 		frame.add(status, BorderLayout.SOUTH);
@@ -64,9 +84,49 @@ public class OurGUI implements ActionListener {
 		frame.setVisible(true);
 	}
 	
+	public void setPieces(JButton[][] board) {
+		
+		//Set black pieces
+		chessBoard[0][0].setIcon(b_Rook);
+		chessBoard[0][1].setIcon(b_Knight);
+		chessBoard[0][2].setIcon(b_Bish);
+		chessBoard[0][3].setIcon(b_Queen);
+		chessBoard[0][4].setIcon(b_King);
+		chessBoard[0][5].setIcon(b_Bish);
+		chessBoard[0][6].setIcon(b_Knight);
+		chessBoard[0][7].setIcon(b_Rook);
+		chessBoard[1][0].setIcon(b_Pawn);
+		chessBoard[1][1].setIcon(b_Pawn);
+		chessBoard[1][2].setIcon(b_Pawn);
+		chessBoard[1][3].setIcon(b_Pawn);
+		chessBoard[1][4].setIcon(b_Pawn);
+		chessBoard[1][5].setIcon(b_Pawn);
+		chessBoard[1][6].setIcon(b_Pawn);
+		chessBoard[1][7].setIcon(b_Pawn);
+		
+		//Set white pieces
+		chessBoard[7][0].setIcon(w_Rook);
+		chessBoard[7][1].setIcon(w_Knight);
+		chessBoard[7][2].setIcon(w_Bish);
+		chessBoard[7][3].setIcon(w_Queen);
+		chessBoard[7][4].setIcon(w_King);
+		chessBoard[7][5].setIcon(w_Bish);
+		chessBoard[7][6].setIcon(w_Knight);
+		chessBoard[7][7].setIcon(w_Rook);
+		chessBoard[6][0].setIcon(w_Pawn);
+		chessBoard[6][1].setIcon(w_Pawn);
+		chessBoard[6][2].setIcon(w_Pawn);
+		chessBoard[6][3].setIcon(w_Pawn);
+		chessBoard[6][4].setIcon(w_Pawn);
+		chessBoard[6][5].setIcon(w_Pawn);
+		chessBoard[6][6].setIcon(w_Pawn);
+		chessBoard[6][7].setIcon(w_Pawn);
+	}
+	
 	public static void main(String[] args) {
 		new OurGUI();
 	}
+	
 
 	
 	/****************************************************************
