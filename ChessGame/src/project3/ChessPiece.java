@@ -265,4 +265,41 @@ public abstract class ChessPiece implements IChessPiece {
 
 		return true;
 	}
+	
+	/************************************************************
+	 * Returns true when a piece can "check" the other players king
+	 * 
+	 * @param piece Piece that may be able to check
+	 * @param board Board being played on
+	 * @param row Start row of the piece trying to check
+	 * @param col Start col of the piece trying to check
+	 * @return  True if piece can check other players king
+	 ************************************************************/
+	public boolean canCheck(IChessPiece piece, IChessPiece[][] board, int row, int col){
+		
+		//Loops through board
+		for(int r = 0; r < board.length; r++){
+			for(int c = 0; c < board[0].length; c++){
+				Move move = new Move(row, col , r, c);
+				IChessPiece otherPiece = null;
+				Player otherPlayer = null;
+				
+				//Stores piece and info
+				if(board[r][c] != null){
+					otherPiece = board[r][c];
+					otherPlayer = otherPiece.player();
+				}
+				
+				//Returns true when there is a valid
+				//move to a king of other color
+				if(piece.isValidMove(move, board) && otherPiece.type()
+						.equals("King") && otherPlayer != piece.player()){
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 }
