@@ -79,5 +79,21 @@ public abstract class ChessPieceTest {
         }
    }
 
+   //TODO this fails :(
+   @Test
+   public void checkTest() throws Throwable {
+	   board[1][1] = piece;
+	   
+	   //retrieves a valid move for the piece in question
+	   Move move = getValidMove(1, 1);
+	   int col = move.toColumn;
+	   int row = move.toRow;
+	   
+	   //Places king at end of valid move
+	   board[row][col] = new King(piece.player().next());
+	   assertTrue("Check Test for ChessPiece", 
+			   ((ChessPiece) piece).canCheck(piece, board, 1, 1));
+   }
+   
 
 }

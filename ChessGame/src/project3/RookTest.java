@@ -158,6 +158,23 @@ public class RookTest extends ChessPieceTest {
 	   
 	   assertTrue("Rook pieceOutOfWay Test 2", piece.isValidMove(
 			   new Move(2, 2, 4, 2), board));
-   }
+   } 
    
+   @Test
+   public void enemyIsNearTest() throws Exception {
+	   
+	   //Making enemies
+	   IChessPiece first = make(piece.player().next());
+	   IChessPiece second = make(piece.player().next());
+	   IChessPiece third = make(piece.player().next());
+	   
+	   //Placing pieces near destination
+	   board[0][1] = piece;
+	   board[3][1] = first;
+	   board[2][0] = second;
+	   board[2][2] = third;
+	   
+	   assertTrue("Rook enemyIsNearTest", 
+			   piece.isValidMove(new Move(0,1,2,1), board));
+   }
 }

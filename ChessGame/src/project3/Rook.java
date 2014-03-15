@@ -63,6 +63,12 @@ public class Rook extends ChessPiece {
 		if(!isPathClear(fromR, fromC, toR, toC, board)){
 			return false;
 		}
+		
+		//Checks if destination contains piece that is friendly
+		if(board[toR][toC] != null && 
+				board[toR][toC].player() == this.player()){
+			return false;
+		}
 
 		return true;
 	}

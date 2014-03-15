@@ -93,9 +93,6 @@ public abstract class ChessPiece implements IChessPiece {
 	public abstract String type();
 
 
-
-
-	//TODO: Make public method to decide which private to use
 	/************************************************************
 	 * Public method that determines which private method to use
 	 * to check if the path is clear.
@@ -139,15 +136,17 @@ public abstract class ChessPiece implements IChessPiece {
 
 			//Can check either left or right
 			if (fromC > toC) {
-				start = toC;
+				
+				//Plus one to not check end, minus one to not check start
+				start = toC + 1;
 				end = fromC - 1;
 			} else {
 				start = fromC + 1;
-				end = toC;
+				end = toC - 1;
 			}
 
 			//Loop through horizontal path 
-			while (start < end) {
+			while (start <= end) {
 				if (board[fromR][start] != null) {
 					return false;
 				}
@@ -160,11 +159,11 @@ public abstract class ChessPiece implements IChessPiece {
 
 			//Can check up and down
 			if (fromR > toR) {
-				start = toR;
+				start = toR + 1;
 				end = fromR - 1;
 			} else {
 				start = fromR + 1;
-				end = toR;
+				end = toR - 1;
 			}
 
 			while (start <= end) {
@@ -235,7 +234,6 @@ public abstract class ChessPiece implements IChessPiece {
 
 			//Checks left down
 			if (fromR > toR) {
-				//TODO
 				startC = fromC - 1;
 
 				while (startR != toR && startC != toC) {
@@ -288,11 +286,13 @@ public abstract class ChessPiece implements IChessPiece {
 				if(board[r][c] != null){
 					otherPiece = board[r][c];
 					otherPlayer = otherPiece.player();
+				}else{
+					continue;
 				}
 				
 				//Returns true when there is a valid
 				//move to a king of other color
-				if(piece.isValidMove(move, board) && otherPiece.type()
+				if(piece.isValidMove(move, board) && (otherPiece.type())
 						.equals("King") && otherPlayer != piece.player()){
 					return true;
 				}
