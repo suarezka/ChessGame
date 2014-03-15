@@ -33,7 +33,7 @@ public class King extends ChessPiece {
 	public String type() {
 		return "King";
 	}
-	
+
 	/************************************************************
 	 * Returns if this is a valid move for a king or not
 	 * 
@@ -42,24 +42,27 @@ public class King extends ChessPiece {
 	 * @return  True if is a valid move
 	 ************************************************************/
 	public boolean isValidMove(Move move, IChessPiece[][] board){
-		
+
 		//Consulting parent class
 		if(!super.isValidMove(move, board)){
 			return false;
 		}
-		
+
 		//Getting move data for King piece
 		int fromC = move.fromColumn;
 		int fromR = move.fromRow;
 		int toC = move.toColumn;
 		int toR = move.toRow;
-		
-		//TODO: Decide if this method is better or other ones
-		
+
+		//Disallows moving into a check position
+		if(isInCheck(toR, toC, board)){
+			return false;
+		}
+
 		//Coordinates for possible moves by a king object
 		final int[] MOVE_ROW = {-1, -1, 0, 1, 1, 1, 0, -1};
 		final int[] MOVE_COL = {0, 1, 1, 1, 0, -1, -1, -1};
-		
+
 		//Checks only possible moves for match with desired move
 		//Returns true if all previous conditions met as well as this
 		for(int k = 0; k < MOVE_ROW.length; k++){
@@ -67,7 +70,31 @@ public class King extends ChessPiece {
 				return true;
 			}
 		}
-		
+
+		return false;
+	}
+
+	/************************************************************
+	 * Returns true when the king is in check
+	 * 
+	 * @param row Row of the king
+	 * @param col Column of the king
+	 * @param board Board being played on
+	 * @return  True when the king is in check
+	 ************************************************************/
+	public boolean isInCheck(int row, int col, IChessPiece[][] board){
+
+		for(int r = 0; r < board.length; r++){
+			for(int c = 0; c < board[0].length; c++){
+				if(board[r][c] != null && board[r][c].player() != this.player()){
+					Move move = new Move(r, c, row, col);
+					if(board[r][c].isValidMove(move, board)){
+						return true;
+					}
+				}
+			}
+		}
+
 		return false;
 	}
 
