@@ -17,6 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -33,6 +36,10 @@ public class OurGUI implements ActionListener {
 	
 	private JFrame frame;
 	private JPanel panel;
+	private ButtonListener bl;
+	private JMenuBar menus;
+	private JMenu options;
+	private JMenuItem newGame, quit;
 	private JButton[][] chessBoard;
 	private JLabel status;
 	private IChessModel game;
@@ -60,7 +67,7 @@ public class OurGUI implements ActionListener {
 	public OurGUI() {
 		
 		firstR = firstC = -1;
-		frame = new JFrame();
+		frame = new JFrame("CIS 163 CHESS");
 		panel = new JPanel();
 		
 		panel.setLayout(new GridLayout(8,8));
@@ -86,6 +93,7 @@ public class OurGUI implements ActionListener {
 		frame.add(panel, BorderLayout.CENTER);
 		status = new JLabel("Welcome! Let's play CHESS!");
 		frame.add(status, BorderLayout.SOUTH);
+		menuSetup();
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -170,8 +178,6 @@ public class OurGUI implements ActionListener {
 	/****************************************************************
      * Static method to load the ImageIcon from the given location.
      *
-     * TODO you might not need this
-     *
      * @param name Name of the file.
      * @return the requested image.
      ****************************************************************/
@@ -189,6 +195,39 @@ public class OurGUI implements ActionListener {
     	return new ImageIcon(resize);
     }
     
+    
+    /***************************************************************
+     * Set Up Menus
+     ***************************************************************/
+    private void menuSetup() {
+    	options = new JMenu("Options");
+    	newGame = new JMenuItem("New Game");
+    	quit = new JMenuItem("Quit");
+    	
+    	newGame.addActionListener(bl);
+    	quit.addActionListener(bl);
+    	
+    	options.add(newGame);
+    	options.add(quit);
+    	
+    	menus = new JMenuBar();
+    	menus.add(options);
+    	
+    	frame.setJMenuBar(menus);
+    }
+    
+    private class ButtonListener implements ActionListener {
+    	public void actionPerformed(ActionEvent e) {
+    		if(e.getSource() == quit) {
+				System.exit(0);
+			}
+			
+			if (e.getSource() == newGame) {
+				game = new ChessModel();
+				setPieces(chessBoard);
+			}
+    	}
+    }
     
     
     /*****************************************************************
@@ -221,6 +260,5 @@ public class OurGUI implements ActionListener {
 				}
 			}
 		}
-		
 	}
 }
