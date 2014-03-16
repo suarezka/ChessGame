@@ -3,6 +3,7 @@ package GUI;
 import gvprojects.chess.model.IChessModel;
 import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
+import gvprojects.chess.model.Player;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -153,9 +154,12 @@ public class OurGUI implements ActionListener {
 		try {
 			game.move(move);
 			
+			//Move the icon to square
 			chessBoard[toR][toC].setIcon
     				(chessBoard[fromR][fromC].getIcon());
 			chessBoard[fromR][fromC].setIcon(null);
+			
+			game.currentPlayer().next();
 			
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -170,7 +174,7 @@ public class OurGUI implements ActionListener {
      *
      * @param name Name of the file.
      * @return the requested image.
-     ***************************************************************/
+     ****************************************************************/
     public static ImageIcon loadIcon(String name) {
     	java.net.URL imgURL = ChessGUI.class.getResource(name);
     	if (imgURL == null) {
@@ -184,7 +188,13 @@ public class OurGUI implements ActionListener {
     	
     	return new ImageIcon(resize);
     }
-
+    
+    
+    
+    /*****************************************************************
+     * Method that handles the ActionListener when JButtons 
+     * are selected.
+     *****************************************************************/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object button = e.getSource();

@@ -14,9 +14,9 @@ import gvprojects.chess.model.Player;
 public class ChessModel implements IChessModel {
 	
 	//Instance Variables
-	Player curPlayer;
-	boolean gameInProgress;
-	IChessPiece[][] board;
+	private Player curPlayer;
+	private boolean gameInProgress;
+	private IChessPiece[][] board;
 	
 	
 	public ChessModel() {
