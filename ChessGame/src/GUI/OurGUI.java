@@ -1,6 +1,8 @@
 package GUI;
 
 import gvprojects.chess.model.IChessModel;
+import gvprojects.chess.model.IChessPiece;
+import gvprojects.chess.model.Move;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /************************************************************
@@ -32,6 +35,7 @@ public class OurGUI implements ActionListener {
 	private JButton[][] chessBoard;
 	private JLabel status;
 	private IChessModel game;
+	private int firstR, firstC, secondR, secondC;
 	
 	private static final int IMAGE_SIZE = 64;
 	
@@ -54,6 +58,7 @@ public class OurGUI implements ActionListener {
 	
 	public OurGUI() {
 		
+		firstR = firstC = -1;
 		frame = new JFrame();
 		panel = new JPanel();
 		
@@ -133,7 +138,30 @@ public class OurGUI implements ActionListener {
 		new OurGUI();
 	}
 	
-
+	/***************************************************************
+	 * Method to move a piece.
+	 * 
+	 * @param fromR current row
+	 * @param fromC current column
+	 * @param toR row moving to
+	 * @param toC row moving to
+	 ***************************************************************/
+	
+	private void movePiece(int fromR, int fromC, int toR, int toC) {
+		Move move = new Move(fromR, fromC, toR, toC);
+		
+		try {
+			game.move(move);
+			
+			chessBoard[toR][toC].setIcon
+    				(chessBoard[fromR][fromC].getIcon());
+			chessBoard[fromR][fromC].setIcon(null);
+			
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+	}
+	
 	
 	/****************************************************************
      * Static method to load the ImageIcon from the given location.
@@ -160,6 +188,29 @@ public class OurGUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object button = e.getSource();
+		
+		for (int k = 0; k < chessBoard.length; k++) {
+			for (int m = 0; m < chessBoard[0].length; m++) {
+				
+				if (button == chessBoard[k][m]) {
+					if (firstC == -1) {
+						firstR = k;
+                        firstC = m;
+                        status.setText(String.format ("Move from (%d,%d) to?",
+                                firstR, firstC));
+					} else {
+						secondR = k;
+                        secondC = m;
+                        status.setText(String.format ("(%d,%d) ==> (%d,%d)",
+                                firstR, firstC, secondR, secondC));
+                        
+                        movePiece(firstR, firstC, secondR, secondC);
+                        firstR = firstC = -1;
+                        
+					}
+				}
+			}
+		}
 		
 	}
 }
