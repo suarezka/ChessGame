@@ -69,6 +69,7 @@ public class OurGUI implements ActionListener {
 		firstR = firstC = -1;
 		frame = new JFrame("CIS 163 CHESS");
 		panel = new JPanel();
+		bl = new ButtonListener();
 		
 		panel.setLayout(new GridLayout(8,8));
 		chessBoard = new JButton[8][8];
@@ -87,7 +88,7 @@ public class OurGUI implements ActionListener {
 			}
 		}
 		
-		setPieces(chessBoard);
+		setBoard(chessBoard);
 		game = new ChessModel();
 		
 		frame.add(panel, BorderLayout.CENTER);
@@ -104,7 +105,23 @@ public class OurGUI implements ActionListener {
 	 * 
 	 * @param board 2D JButton array
 	 ****************************************************************/
-	public void setPieces(JButton[][] board) {
+	public void setBoard(JButton[][] board) {
+		
+		panel.removeAll();
+		
+		for (int k = 0; k < chessBoard.length; k++) {
+			for (int m = 0; m < chessBoard[k].length; m++) {
+				chessBoard[k][m] = new JButton();
+				chessBoard[k][m].setPreferredSize(new Dimension(IMAGE_SIZE + 5, IMAGE_SIZE + 5));
+				chessBoard[k][m].addActionListener(this);
+				if ((k + m) % 2 == 0) {
+					chessBoard[k][m].setBackground(new Color(120, 40, 84));
+				} else {
+					chessBoard[k][m].setBackground(new Color(200, 200, 50));
+				}
+				panel.add(chessBoard[k][m]);
+			}
+		}
 		
 		//Set black pieces
 		chessBoard[0][0].setIcon(b_Rook);
@@ -224,7 +241,7 @@ public class OurGUI implements ActionListener {
 			
 			if (e.getSource() == newGame) {
 				game = new ChessModel();
-				setPieces(chessBoard);
+				setBoard(chessBoard);
 			}
     	}
     }
