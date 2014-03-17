@@ -111,7 +111,7 @@ public class King extends ChessPiece {
 	public boolean isInCheck(int row, int col, IChessPiece[][] board){
 		boolean inCheck = false;
 		
-		//Clearing atttackers list to avoid duplicates
+		//Clearing attackers list to avoid duplicates
 		attackers.clear();
 		
 		//Looping through board

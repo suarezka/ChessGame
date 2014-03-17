@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import project3.Bishop;
+import project3.ChessPiece;
 import project3.King;
 import project3.Knight;
 import project3.Pawn;
@@ -136,18 +138,42 @@ public class ChessModel implements IChessModel {
 		return false;
 	}
 	
-	/************************************************************
-	 * Takes in a move and returns an array list of points on 
-	 * the path to the king
-	 * 
-	 * @param move Move from attacking piece to king
-	 * @return  ArrayList of points on the path to king
-	 ************************************************************/
-	public ArrayList pathToKing(Move move){
-		
-		return ArrayList;
-	}
 
+	/************************************************************
+	 * Gets the path traveled by the attacking piece
+	 * 
+	 * @param move 
+	 * @return  
+	 ************************************************************/
+	private ArrayList<Point> pathGetter(Move move){
+		ArrayList<Point> path = new ArrayList<Point>();
+		
+		int toR = move.toRow;
+		int toC = move.toColumn;
+		int fromR = move.fromRow;
+		int fromC = move.fromColumn;
+		
+		//Checking if the methods of ChessPiece can be used
+		if(board[fromR][fromC].type().equals("Queen") ||
+				board[fromR][fromC].type().equals("Rook") || 
+				board[fromR][fromC].type().equals("Bishop")){
+			
+			board[fromR][fromC].isValidMove(move, board);
+			path = ((ChessPiece) board[fromR][fromC]).getPiecePath();
+		
+		//Checking if piece has no path, and just needs to be removed to block
+		}else if(board[fromR][fromC].type().equals("Pawn") 
+				|| board[fromR][fromC].type().equals("Knight")){
+			path.add(new Point(fromR, fromC));
+		
+		//Else case is for kings which dont attack.
+		}else{
+			path = null;
+		}
+	
+		return path;
+	}
+	
 	/************************************************************
 	 * isValidMove for model, returns if  a move is valid
 	 * 
@@ -156,11 +182,21 @@ public class ChessModel implements IChessModel {
 	 ************************************************************/
 	@Override
 	public boolean isValidMove(Move move) {
-		return board[move.fromRow][move.fromColumn].isValidMove(move, board);
+		if(!board[move.fromRow][move.fromColumn].isValidMove(move, board)){
+			return false;
+		}
+		
+		if(inCheck() && Player.BLACK == curPlayer && !attackMovesB.isEmpty()){
+			
+		}else if(inCheck()){
+			
+		}
+		
+		return true;
 	}
 
 	/************************************************************
-	 * Method to actually move pieces arround on the board
+	 * Method to actually move pieces around on the board
 	 * 
 	 * @param move Desired move to be made
 	 ************************************************************/

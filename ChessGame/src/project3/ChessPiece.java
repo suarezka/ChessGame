@@ -1,5 +1,8 @@
 package project3;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
 import gvprojects.chess.model.Player;
@@ -17,6 +20,9 @@ public abstract class ChessPiece implements IChessPiece {
 
 	/** Owner of the ChessPiece */
 	private Player owner;
+	
+	/** Array List of latest path */
+	private ArrayList<Point> path;
 
 	/************************************************************
 	 * Constructor for ChessPiece
@@ -25,6 +31,7 @@ public abstract class ChessPiece implements IChessPiece {
 	 ************************************************************/
 	public ChessPiece (Player p) {
 		owner = p;
+		path = new ArrayList<Point>();
 	}
 
 	/************************************************************
@@ -127,7 +134,8 @@ public abstract class ChessPiece implements IChessPiece {
 
 		int start;
 		int end;
-
+		path.clear();
+		
 		/* Check horizontal path */
 		if (fromR == toR) {
 
@@ -147,7 +155,8 @@ public abstract class ChessPiece implements IChessPiece {
 				if (board[fromR][start] != null) {
 					return false;
 				}
-
+				Point point = new Point(fromR, start);
+				path.add(point);
 				start++;
 			}
 
@@ -167,7 +176,8 @@ public abstract class ChessPiece implements IChessPiece {
 				if (board[start][fromC] != null) {
 					return false;
 				}
-
+				Point point = new Point(start, fromC);
+				path.add(point);
 				start++;
 			}
 		}
@@ -205,7 +215,8 @@ public abstract class ChessPiece implements IChessPiece {
 					if (board[startR][startC] != null) {
 						return false;
 					}
-
+					Point point = new Point(startR, startC);
+					path.add(point);
 					startR--;
 					startC--;
 				}
@@ -218,7 +229,8 @@ public abstract class ChessPiece implements IChessPiece {
 					if (board[startR][startC] != null) {
 						return false;
 					}
-
+					Point point = new Point(startR, startC);
+					path.add(point);
 					startR--;
 					startC++;
 				}
@@ -237,7 +249,8 @@ public abstract class ChessPiece implements IChessPiece {
 					if (board[startR][startC] != null) {
 						return false;
 					}
-
+					Point point = new Point(startR, startC);
+					path.add(point);
 					startR++;
 					startC--;
 				} 
@@ -250,7 +263,8 @@ public abstract class ChessPiece implements IChessPiece {
 					if (board[startR][startC] != null) {
 						return false;
 					}
-
+					Point point = new Point(startR, startC);
+					path.add(point);
 					startR++;
 					startC++;
 				}
@@ -298,5 +312,12 @@ public abstract class ChessPiece implements IChessPiece {
 		
 		return false;
 	}
-	
+
+	/************************************************************
+	 * Returns the path for the piece 
+	 * @return  Array list of points that represent path of piece
+	 ************************************************************/
+	public ArrayList<Point> getPiecePath(){
+		return path;
+	}
 }
