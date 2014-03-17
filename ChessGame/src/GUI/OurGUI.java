@@ -123,41 +123,103 @@ public class OurGUI implements ActionListener {
 			}
 		}
 		
-		//Set black pieces
-		chessBoard[0][0].setIcon(b_Rook);
-		chessBoard[0][1].setIcon(b_Knight);
-		chessBoard[0][2].setIcon(b_Bish);
-		chessBoard[0][3].setIcon(b_Queen);
-		chessBoard[0][4].setIcon(b_King);
-		chessBoard[0][5].setIcon(b_Bish);
-		chessBoard[0][6].setIcon(b_Knight);
-		chessBoard[0][7].setIcon(b_Rook);
-		chessBoard[1][0].setIcon(b_Pawn);
-		chessBoard[1][1].setIcon(b_Pawn);
-		chessBoard[1][2].setIcon(b_Pawn);
-		chessBoard[1][3].setIcon(b_Pawn);
-		chessBoard[1][4].setIcon(b_Pawn);
-		chessBoard[1][5].setIcon(b_Pawn);
-		chessBoard[1][6].setIcon(b_Pawn);
-		chessBoard[1][7].setIcon(b_Pawn);
+		//Loops through board and sets icons on JButtons
+		for(int r = 0; r < game.numRows(); r++){
+			for(int c = 0; c < game.numColumns(); c++){
+				
+				//Doesnt pass a blank piece through
+				if(game.pieceAt(r, c) != null){
+					chessBoard[r][c].setIcon(findIcon(game.pieceAt(r,c)));
+				}
+			}
+		}
 		
-		//Set white pieces
-		chessBoard[7][0].setIcon(w_Rook);
-		chessBoard[7][1].setIcon(w_Knight);
-		chessBoard[7][2].setIcon(w_Bish);
-		chessBoard[7][3].setIcon(w_Queen);
-		chessBoard[7][4].setIcon(w_King);
-		chessBoard[7][5].setIcon(w_Bish);
-		chessBoard[7][6].setIcon(w_Knight);
-		chessBoard[7][7].setIcon(w_Rook);
-		chessBoard[6][0].setIcon(w_Pawn);
-		chessBoard[6][1].setIcon(w_Pawn);
-		chessBoard[6][2].setIcon(w_Pawn);
-		chessBoard[6][3].setIcon(w_Pawn);
-		chessBoard[6][4].setIcon(w_Pawn);
-		chessBoard[6][5].setIcon(w_Pawn);
-		chessBoard[6][6].setIcon(w_Pawn);
-		chessBoard[6][7].setIcon(w_Pawn);
+//		//Set black pieces
+//		chessBoard[0][0].setIcon(b_Rook);
+//		chessBoard[0][1].setIcon(b_Knight);
+//		chessBoard[0][2].setIcon(b_Bish);
+//		chessBoard[0][3].setIcon(b_Queen);
+//		chessBoard[0][4].setIcon(b_King);
+//		chessBoard[0][5].setIcon(b_Bish);
+//		chessBoard[0][6].setIcon(b_Knight);
+//		chessBoard[0][7].setIcon(b_Rook);
+//		chessBoard[1][0].setIcon(b_Pawn);
+//		chessBoard[1][1].setIcon(b_Pawn);
+//		chessBoard[1][2].setIcon(b_Pawn);
+//		chessBoard[1][3].setIcon(b_Pawn);
+//		chessBoard[1][4].setIcon(b_Pawn);
+//		chessBoard[1][5].setIcon(b_Pawn);
+//		chessBoard[1][6].setIcon(b_Pawn);
+//		chessBoard[1][7].setIcon(b_Pawn);
+//		
+//		//Set white pieces
+//		chessBoard[7][0].setIcon(w_Rook);
+//		chessBoard[7][1].setIcon(w_Knight);
+//		chessBoard[7][2].setIcon(w_Bish);
+//		chessBoard[7][3].setIcon(w_Queen);
+//		chessBoard[7][4].setIcon(w_King);
+//		chessBoard[7][5].setIcon(w_Bish);
+//		chessBoard[7][6].setIcon(w_Knight);
+//		chessBoard[7][7].setIcon(w_Rook);
+//		chessBoard[6][0].setIcon(w_Pawn);
+//		chessBoard[6][1].setIcon(w_Pawn);
+//		chessBoard[6][2].setIcon(w_Pawn);
+//		chessBoard[6][3].setIcon(w_Pawn);
+//		chessBoard[6][4].setIcon(w_Pawn);
+//		chessBoard[6][5].setIcon(w_Pawn);
+//		chessBoard[6][6].setIcon(w_Pawn);
+//		chessBoard[6][7].setIcon(w_Pawn);
+	}
+	
+	/************************************************************
+	 * Helper to take a piece and determine it's proper icon
+	 * 
+	 * @param piece Piece that needs icon
+	 * @return  Proper ImageIcon for piece
+	 ************************************************************/
+	private ImageIcon findIcon(IChessPiece piece){
+		String imageName = "";
+		ImageIcon icon;
+		
+		//determines what color piece is
+		if(piece.player() == Player.WHITE){
+			imageName += "w_";
+		}else{
+			imageName += "b_";
+		}
+		imageName += piece.type();
+		
+		//Determines piece type
+		switch (imageName){
+		case "b_Rook":	icon = b_Rook;
+			  			break;
+		case "b_Knight":icon = b_Knight;
+						break;
+		case "b_Bishop":icon = b_Bish;
+						break;
+		case "b_Queen":	icon = b_Queen;
+						break;
+		case "b_King":	icon = b_King;
+						break;
+		case "b_Pawn":	icon = b_Pawn;
+						break;
+		case "w_Rook":	icon = w_Rook;
+						break;
+		case "w_Knight":icon = w_Knight;
+						break;
+		case "w_Bishop":icon = w_Bish;
+						break;
+		case "w_Queen":	icon = w_Queen;
+						break;
+		case "w_King":	icon = w_King;
+						break;
+		case "w_Pawn":	icon = w_Pawn;
+						break;
+		default:		icon = null;
+						break;
+		}
+		
+		return icon;
 	}
 	
 	public static void main(String[] args) {
