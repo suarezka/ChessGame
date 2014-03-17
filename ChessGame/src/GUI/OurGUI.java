@@ -74,25 +74,10 @@ public class OurGUI implements ActionListener {
 		panel.setLayout(new GridLayout(8,8));
 		chessBoard = new JButton[8][8];
 		
-		for (int k = 0; k < chessBoard.length; k++) {
-			for (int m = 0; m < chessBoard[k].length; m++) {
-				chessBoard[k][m] = new JButton();
-				chessBoard[k][m].setPreferredSize(new Dimension(IMAGE_SIZE + 5, IMAGE_SIZE + 5));
-				chessBoard[k][m].addActionListener(this);
-				if ((k + m) % 2 == 0) {
-					chessBoard[k][m].setBackground(new Color(120, 40, 84));
-				} else {
-					chessBoard[k][m].setBackground(new Color(200, 200, 50));
-				}
-				panel.add(chessBoard[k][m]);
-			}
-		}
-		
 		setBoard(chessBoard);
-		game = new ChessModel();
 		
 		frame.add(panel, BorderLayout.CENTER);
-		status = new JLabel("Welcome! Let's play CHESS!");
+		status = new JLabel("Welcome! Let's play CHESS! White moves first.");
 		frame.add(status, BorderLayout.SOUTH);
 		menuSetup();
 		frame.pack();
@@ -107,68 +92,43 @@ public class OurGUI implements ActionListener {
 	 ****************************************************************/
 	public void setBoard(JButton[][] board) {
 		
+		//Clear panel to reset it
 		panel.removeAll();
 		
+		//Create JButtons for each square of the board
 		for (int k = 0; k < chessBoard.length; k++) {
 			for (int m = 0; m < chessBoard[k].length; m++) {
+				
+				//Set up the JButtons
 				chessBoard[k][m] = new JButton();
 				chessBoard[k][m].setPreferredSize(new Dimension(IMAGE_SIZE + 5, IMAGE_SIZE + 5));
 				chessBoard[k][m].addActionListener(this);
+				
+				//Create alternating background colors
 				if ((k + m) % 2 == 0) {
 					chessBoard[k][m].setBackground(new Color(120, 40, 84));
 				} else {
 					chessBoard[k][m].setBackground(new Color(200, 200, 50));
 				}
+				
+				//Add buttons to panel
 				panel.add(chessBoard[k][m]);
 			}
 		}
+		
+		//Create new game
+		game = new ChessModel();
 		
 		//Loops through board and sets icons on JButtons
 		for(int r = 0; r < game.numRows(); r++){
 			for(int c = 0; c < game.numColumns(); c++){
 				
-				//Doesnt pass a blank piece through
+				//Doesn't pass a blank piece through
 				if(game.pieceAt(r, c) != null){
 					chessBoard[r][c].setIcon(findIcon(game.pieceAt(r,c)));
 				}
 			}
 		}
-		
-//		//Set black pieces
-//		chessBoard[0][0].setIcon(b_Rook);
-//		chessBoard[0][1].setIcon(b_Knight);
-//		chessBoard[0][2].setIcon(b_Bish);
-//		chessBoard[0][3].setIcon(b_Queen);
-//		chessBoard[0][4].setIcon(b_King);
-//		chessBoard[0][5].setIcon(b_Bish);
-//		chessBoard[0][6].setIcon(b_Knight);
-//		chessBoard[0][7].setIcon(b_Rook);
-//		chessBoard[1][0].setIcon(b_Pawn);
-//		chessBoard[1][1].setIcon(b_Pawn);
-//		chessBoard[1][2].setIcon(b_Pawn);
-//		chessBoard[1][3].setIcon(b_Pawn);
-//		chessBoard[1][4].setIcon(b_Pawn);
-//		chessBoard[1][5].setIcon(b_Pawn);
-//		chessBoard[1][6].setIcon(b_Pawn);
-//		chessBoard[1][7].setIcon(b_Pawn);
-//		
-//		//Set white pieces
-//		chessBoard[7][0].setIcon(w_Rook);
-//		chessBoard[7][1].setIcon(w_Knight);
-//		chessBoard[7][2].setIcon(w_Bish);
-//		chessBoard[7][3].setIcon(w_Queen);
-//		chessBoard[7][4].setIcon(w_King);
-//		chessBoard[7][5].setIcon(w_Bish);
-//		chessBoard[7][6].setIcon(w_Knight);
-//		chessBoard[7][7].setIcon(w_Rook);
-//		chessBoard[6][0].setIcon(w_Pawn);
-//		chessBoard[6][1].setIcon(w_Pawn);
-//		chessBoard[6][2].setIcon(w_Pawn);
-//		chessBoard[6][3].setIcon(w_Pawn);
-//		chessBoard[6][4].setIcon(w_Pawn);
-//		chessBoard[6][5].setIcon(w_Pawn);
-//		chessBoard[6][6].setIcon(w_Pawn);
-//		chessBoard[6][7].setIcon(w_Pawn);
 	}
 	
 	/************************************************************
@@ -246,7 +206,11 @@ public class OurGUI implements ActionListener {
     				(chessBoard[fromR][fromC].getIcon());
 			chessBoard[fromR][fromC].setIcon(null);
 			
-			game.currentPlayer().next();
+			/*
+			if (game.inCheck()) {
+				JOptionPane.showMessageDialog(null, "King is in Check!");
+			}
+			*/
 			
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -279,6 +243,7 @@ public class OurGUI implements ActionListener {
      * Set Up Menus
      ***************************************************************/
     private void menuSetup() {
+    	//Create menu and menu items
     	options = new JMenu("Options");
     	newGame = new JMenuItem("New Game");
     	quit = new JMenuItem("Quit");
@@ -302,7 +267,6 @@ public class OurGUI implements ActionListener {
 			}
 			
 			if (e.getSource() == newGame) {
-				game = new ChessModel();
 				setBoard(chessBoard);
 			}
     	}
@@ -317,15 +281,21 @@ public class OurGUI implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object button = e.getSource();
 		
+		//Loop through to find selected JButton
 		for (int k = 0; k < chessBoard.length; k++) {
 			for (int m = 0; m < chessBoard[0].length; m++) {
 				
+				//Selected JButton
 				if (button == chessBoard[k][m]) {
+					
+					//First button selected (from location)
 					if (firstC == -1) {
 						firstR = k;
                         firstC = m;
                         status.setText(String.format ("Move from (%d,%d) to?",
                                 firstR, firstC));
+                        
+					//Second button selected (to location)
 					} else {
 						secondR = k;
                         secondC = m;
