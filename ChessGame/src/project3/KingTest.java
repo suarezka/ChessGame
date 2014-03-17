@@ -127,13 +127,29 @@ public class KingTest extends ChessPieceTest {
 				piece.isValidMove(new Move(4 ,2, 4, 3), board));
 	}
 	
-	
-	//TODO made an oopsy here
 	@Test
 	public void cantAttackOtherKing() throws Exception {
 		board[6][2] = piece;
 		board[6][4] = new King(piece.player().next());
 		
 		assertFalse("Kings Dont Attack", piece.isValidMove(new Move(6, 2, 6, 3), board));
+	}
+	
+	@Test
+	public void doesMakeArrayList() throws Exception {
+		board[6][2] = piece;
+		board[6][4] = new Rook(piece.player().next());
+		
+		((King) piece).isInCheck(6, 2, board);
+		
+		int toR = ((King) piece).getAttackers().get(0).toRow;
+		int toC = ((King) piece).getAttackers().get(0).toColumn;
+		int fromR = ((King) piece).getAttackers().get(0).fromRow;
+		int fromC = ((King) piece).getAttackers().get(0).fromColumn;
+		
+		assertEquals("List Row Test", toR, 6);
+		assertEquals("List Row Test", toC, 2);
+		assertEquals("List Row Test", fromR, 6);
+		assertEquals("List Row Test", fromC, 4);
 	}
 }

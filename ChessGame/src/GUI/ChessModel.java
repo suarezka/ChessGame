@@ -129,8 +129,23 @@ public class ChessModel implements IChessModel {
 			return false;
 		}
 		
+		if(!attackMovesB.get(0).equals(null)){
+			
+		}
 		
 		return false;
+	}
+	
+	/************************************************************
+	 * Takes in a move and returns an array list of points on 
+	 * the path to the king
+	 * 
+	 * @param move Move from attacking piece to king
+	 * @return  ArrayList of points on the path to king
+	 ************************************************************/
+	public ArrayList pathToKing(Move move){
+		
+		return ArrayList;
 	}
 
 	/************************************************************

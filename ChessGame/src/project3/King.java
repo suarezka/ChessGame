@@ -18,7 +18,7 @@ import gvprojects.chess.model.Player;
 public class King extends ChessPiece {
 	
 	/** Array List to keep track of who can attack */
-	ArrayList<Move> attackers;
+	private ArrayList<Move> attackers;
 
 	/************************************************************
 	 * Constructor for the King Class
@@ -140,7 +140,7 @@ public class King extends ChessPiece {
 	 * 
 	 * @return  Attacker ArrayList
 	 ************************************************************/
-	public ArrayList getAttackers(){
+	public ArrayList<Move> getAttackers(){
 		return attackers;
 	}
 
