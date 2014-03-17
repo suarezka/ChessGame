@@ -1,5 +1,7 @@
 package GUI;
 
+import java.util.ArrayList;
+
 import project3.Bishop;
 import project3.King;
 import project3.Knight;
@@ -17,13 +19,20 @@ public class ChessModel implements IChessModel {
 	private Player curPlayer;
 	private boolean gameInProgress;
 	private IChessPiece[][] board;
+	private ArrayList<Move> attackMovesB;
+	private ArrayList<Move> attackMovesW;
 	
 	
+	/************************************************************
+	 * ChessModel constructor
+	 ************************************************************/
 	public ChessModel() {
 		//Create game board
 		board = new IChessPiece[8][8];
 		curPlayer = Player.WHITE;
 		gameInProgress = true;
+		attackMovesB = new ArrayList<Move>();
+		attackMovesW = new ArrayList<Move>();
 		
 		//Set black pieces on board
 		board[0][0] = new Rook(Player.BLACK);
@@ -63,28 +72,83 @@ public class ChessModel implements IChessModel {
 		
 	}
 	
+	/************************************************************
+	 * Gives the current player in game
+	 * 
+	 * @return  Current Player
+	 ************************************************************/
 	@Override
 	public Player currentPlayer() {
 		return curPlayer;
 	}
 
+	/************************************************************
+	 * Returns if the game is in check, regardless of color
+	 * 
+	 * @return  True if game is in check
+	 ************************************************************/
 	@Override
 	public boolean inCheck() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isInCheck = false;
+		
+		//Clearing arrayList to avoid
+		attackMovesB.clear();
+		attackMovesW.clear();
+		
+		for(int r = 0; r < board.length; r++){
+			for(int c = 0; c < board[0].length; c++){
+				
+				//Checks if piece at board is a king in check
+				if(board[r][c].type().equals("King") && 
+						((King) board[r][c]).isInCheck(r, c, board)){
+					isInCheck = true;
+					
+					//Checks player color to fill appropriate array list
+					if(board[r][c].player() == Player.BLACK){
+						attackMovesB = ((King) board[r][c]).getAttackers();
+					}else{
+						attackMovesW = ((King) board[r][c]).getAttackers();
+					}
+				}
+			}
+		}
+		return isInCheck;
 	}
 
+	/************************************************************
+	 * Returns if there is a checkmate or not
+	 * 
+	 * @return True if there is a checkmate
+	 ************************************************************/
 	@Override
 	public boolean isComplete() {
-		//TODO: King captured?
+		
+		//Checks if in check first, also as result fills
+		//array lists of attackers
+		if(!inCheck()){
+			return false;
+		}
+		
+		
 		return false;
 	}
 
+	/************************************************************
+	 * isValidMove for model, returns if  a move is valid
+	 * 
+	 * @param move Move being checked for validity
+	 * @return  True if move is valid
+	 ************************************************************/
 	@Override
 	public boolean isValidMove(Move move) {
 		return board[move.fromRow][move.fromColumn].isValidMove(move, board);
 	}
 
+	/************************************************************
+	 * Method to actually move pieces arround on the board
+	 * 
+	 * @param move Desired move to be made
+	 ************************************************************/
 	@Override
 	public void move(Move move) {
 		if (!isValidMove(move)) {
@@ -96,16 +160,33 @@ public class ChessModel implements IChessModel {
 		curPlayer.next();
 	}
 
+	/************************************************************
+	 * Returns the number of columns in board[][]
+	 * 
+	 * @return  Length of board[0]
+	 ************************************************************/
 	@Override
 	public int numColumns() {
 		return board[0].length;
 	}
 
+	/************************************************************
+	 * Returns the number of rows in board[][]
+	 * 
+	 * @return  Length of board
+	 ************************************************************/
 	@Override
 	public int numRows() {
 		return board.length;
 	}
 
+	/************************************************************
+	 * returns piece at the given location on the board
+	 * 
+	 * @param row Row where piece is found
+	 * @param col Column where piece is found
+	 * @return  IChessPiece from the board at desired location
+	 ************************************************************/
 	@Override
 	public IChessPiece pieceAt(int row, int col) {
 		return board[row][col];
