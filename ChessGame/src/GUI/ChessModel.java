@@ -156,6 +156,9 @@ public class ChessModel implements IChessModel {
 	 ************************************************************/
 	@Override
 	public boolean isValidMove(Move move) {
+		if (board[move.fromRow][move.fromColumn].player() != currentPlayer()) {
+			throw new IllegalArgumentException("Wait your turn!");
+		}
 		return board[move.fromRow][move.fromColumn].isValidMove(move, board);
 	}
 
