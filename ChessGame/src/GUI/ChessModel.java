@@ -175,7 +175,7 @@ public class ChessModel implements IChessModel {
 		
 		board[move.toRow][move.toColumn] = board[move.fromRow][move.fromColumn];
 		board[move.fromRow][move.fromColumn] = null;
-		curPlayer.next();
+		curPlayer = curPlayer.next();
 	}
 
 	/************************************************************

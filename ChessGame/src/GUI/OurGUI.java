@@ -198,13 +198,13 @@ public class OurGUI implements ActionListener {
     				(chessBoard[fromR][fromC].getIcon());
 			chessBoard[fromR][fromC].setIcon(null);
 			
+			/*
 			if (game.inCheck()) {
 				JOptionPane.showMessageDialog(null, "King is in Check!");
 			}
+			*/
 			
-			game.currentPlayer().next();
-			
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
