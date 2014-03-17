@@ -1,5 +1,7 @@
 package project3;
 
+import java.util.ArrayList;
+
 import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
 import gvprojects.chess.model.Player;
@@ -14,6 +16,9 @@ import gvprojects.chess.model.Player;
  * @version Mar 8, 2014
  ************************************************************/
 public class King extends ChessPiece {
+	
+	/** Array List to keep track of who can attack */
+	ArrayList<Move> attackers;
 
 	/************************************************************
 	 * Constructor for the King Class
@@ -22,6 +27,7 @@ public class King extends ChessPiece {
 	 ************************************************************/
 	public King(Player p) {
 		super(p);
+		attackers = new ArrayList<Move>();
 	}
 
 	/************************************************************
@@ -54,14 +60,34 @@ public class King extends ChessPiece {
 		int toC = move.toColumn;
 		int toR = move.toRow;
 
+		//Coordinates for possible moves by a king object
+		final int[] MOVE_ROW = {-1, -1, 0, 1, 1, 1, 0, -1};
+		final int[] MOVE_COL = {0, 1, 1, 1, 0, -1, -1, -1};
+		
+		//Looping through surrounding area around to destination
+		for(int m = 0; m < MOVE_ROW.length; m++){
+			int row = toR + MOVE_ROW[m]; 
+			int col = toC + MOVE_COL[m];
+			
+			//Avoiding index out of bounds
+			if(row >= board.length || col >= board[0].length 
+					|| row < 0 || col < 0){
+				continue;
+			}
+			
+			//Checking if there's an opposite color king nearby 
+			//to avoid infinite looping
+			if(board[row][col] != null && board[row][col].type().equals("King") 
+					&& board[row][col].player() != this.player()){
+				return false;
+			}
+		}
+
 		//Disallows moving into a check position
 		if(isInCheck(toR, toC, board)){
 			return false;
 		}
 
-		//Coordinates for possible moves by a king object
-		final int[] MOVE_ROW = {-1, -1, 0, 1, 1, 1, 0, -1};
-		final int[] MOVE_COL = {0, 1, 1, 1, 0, -1, -1, -1};
 
 		//Checks only possible moves for match with desired move
 		//Returns true if all previous conditions met as well as this
@@ -83,19 +109,39 @@ public class King extends ChessPiece {
 	 * @return  True when the king is in check
 	 ************************************************************/
 	public boolean isInCheck(int row, int col, IChessPiece[][] board){
-
+		boolean inCheck = false;
+		
+		//Clearing atttackers list to avoid duplicates
+		attackers.clear();
+		
+		//Looping through board
 		for(int r = 0; r < board.length; r++){
 			for(int c = 0; c < board[0].length; c++){
+				
+				//Checks if there is a player and if the player 
+				//is different than this player
 				if(board[r][c] != null && board[r][c].player() != this.player()){
 					Move move = new Move(r, c, row, col);
+					
+					//Sees if piece can move to king
 					if(board[r][c].isValidMove(move, board)){
-						return true;
+						inCheck = true;
+						attackers.add(move);
 					}
 				}
 			}
 		}
 
-		return false;
+		return inCheck;
+	}
+	
+	/************************************************************
+	 * Getter for attacker list
+	 * 
+	 * @return  Attacker ArrayList
+	 ************************************************************/
+	public ArrayList getAttackers(){
+		return attackers;
 	}
 
 }
