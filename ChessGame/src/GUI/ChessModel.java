@@ -196,7 +196,7 @@ public class ChessModel implements IChessModel {
 	}
 
 	/************************************************************
-	 * Method to actually move pieces around on the board
+	 * Method to actually move pieces arround on the board
 	 * 
 	 * @param move Desired move to be made
 	 ************************************************************/
