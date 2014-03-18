@@ -13,7 +13,7 @@ import gvprojects.chess.model.Player;
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
- * @version Mar 8, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public class King extends ChessPiece {
 	
@@ -120,7 +120,8 @@ public class King extends ChessPiece {
 				
 				//Checks if there is a player and if the player 
 				//is different than this player
-				if(board[r][c] != null && board[r][c].player() != this.player()){
+				if(board[r][c] != null && board[r][c].player() 
+						!= this.player()){
 					Move move = new Move(r, c, row, col);
 					
 					//Sees if piece can move to king

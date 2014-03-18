@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
- * @version Mar 8, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public class KingTest extends ChessPieceTest {
 
@@ -123,7 +123,8 @@ public class KingTest extends ChessPieceTest {
 		board[6][2] = piece;
 		board[6][4] = new King(piece.player().next());
 		
-		assertFalse("Kings Dont Attack", piece.isValidMove(new Move(6, 2, 6, 3), board));
+		assertFalse("Kings Dont Attack", piece.isValidMove(
+				new Move(6, 2, 6, 3), board));
 	}
 	
 	@Test

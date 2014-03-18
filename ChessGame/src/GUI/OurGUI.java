@@ -32,7 +32,7 @@ import project3.ChessModel;
  *
  * @author Kaye Suarez
  * @author DaiLynn Dietz
- * @version Mar 15, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public class OurGUI implements ActionListener {
 	
@@ -66,6 +66,9 @@ public class OurGUI implements ActionListener {
 			w_Pawn = loadIcon("images\\w_pawn.png");
 	
 	
+	/************************************************************
+	 * GUI constructor
+	 ************************************************************/
 	public OurGUI() {
 		
 		firstR = firstC = -1;
@@ -103,7 +106,8 @@ public class OurGUI implements ActionListener {
 				
 				//Set up the JButtons
 				chessBoard[k][m] = new JButton();
-				chessBoard[k][m].setPreferredSize(new Dimension(IMAGE_SIZE + 5, IMAGE_SIZE + 5));
+				chessBoard[k][m].setPreferredSize(
+						new Dimension(IMAGE_SIZE + 5, IMAGE_SIZE + 5));
 				chessBoard[k][m].addActionListener(this);
 				
 				//Create alternating background colors
@@ -184,6 +188,9 @@ public class OurGUI implements ActionListener {
 		return icon;
 	}
 	
+	/************************************************************
+	 * Main Method to initialize GUI
+	 ************************************************************/
 	public static void main(String[] args) {
 		new OurGUI();
 	}
@@ -196,7 +203,6 @@ public class OurGUI implements ActionListener {
 	 * @param toR row moving to
 	 * @param toC row moving to
 	 ***************************************************************/
-	
 	private void movePiece(int fromR, int fromC, int toR, int toC) {
 		Move move = new Move(fromR, fromC, toR, toC);
 		
@@ -272,6 +278,8 @@ public class OurGUI implements ActionListener {
     /*****************************************************************
      * Method that handles the ActionListener when JButtons 
      * are selected.
+     * 
+     * @param e Event triggering action listener
      *****************************************************************/
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -301,17 +309,15 @@ public class OurGUI implements ActionListener {
                         movePiece(firstR, firstC, secondR, secondC);
                         if (game.inCheck()) {
             				if(game.isComplete()){
-            					JOptionPane.showMessageDialog(null, "Game Over!");
+            					JOptionPane.showMessageDialog(
+            							null, "Game Over!");
             					System.exit(0);
             				}else{
-            					JOptionPane.showMessageDialog(null, "King is in Check!");
+            					JOptionPane.showMessageDialog(
+            							null, "King is in Check!");
             				}
-            			} 
-                        
-                        
-                        
-                        firstR = firstC = -1;
-                        
+            			}   
+                        firstR = firstC = -1;   
 					}
 				}
 			}

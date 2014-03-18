@@ -18,6 +18,7 @@ import static org.junit.Assert.assertFalse;
  * @author DaiLynn Dietz
  * @author Kaye Suarez
  * @author Zachary Kurmas & Hans Dulimarta
+ * @version Mar 18, 2014
  ***********************************************************/
 // Created  12/8/12 at 9:28 PM
 // (C) Zachary Kurmas 2012
@@ -55,7 +56,8 @@ public abstract class ChessPieceTest {
    @Test(expected = IllegalArgumentException.class)
    public void complainsIfFromLocIsDifferentObject() throws Throwable {
       board[1][3] = make(Player.WHITE);
-      assertFalse("ChessPiece Test 2", piece.isValidMove(getValidMove(1, 3), board));
+      assertFalse("ChessPiece Test 2", piece.isValidMove(
+    		  getValidMove(1, 3), board));
    }
 
    @Test

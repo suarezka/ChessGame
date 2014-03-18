@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
  * @author DaiLynn Dietz 
  * @author Kaye Suarez
  * @author Zachary Kurmas & Hans Dulimarta
+ * @version Mar 18, 2014
  ***********************************************************/
 // Created 12/8/12 at 9:01 PM
 // (C) Zachary Kurmas 2012
@@ -58,7 +59,8 @@ public class RookTest extends ChessPieceTest {
    @Test
    public void canMoveDown() throws Exception {
 	   board[1][1] = piece;
-	   assertTrue("Should be possible Rook move down", piece.isValidMove(new Move(1,1,2,1), board));
+	   assertTrue("Should be possible Rook move down",
+			   piece.isValidMove(new Move(1,1,2,1), board));
    }
    
    @Test
@@ -113,7 +115,8 @@ public class RookTest extends ChessPieceTest {
 	   board[6][2] = otherPiece;
 	   Move rookLeft = new Move(6, 4, 6, 1);
 	   
-	   assertFalse("Rook pieceInTheWay Test 2", piece.isValidMove(rookLeft, board));
+	   assertFalse("Rook pieceInTheWay Test 2", 
+			   piece.isValidMove(rookLeft, board));
    }
    
    @Test
@@ -124,7 +127,8 @@ public class RookTest extends ChessPieceTest {
 	   board[4][2] = otherPiece;
 	   Move rookUp = new Move(5, 2, 3, 2);
 	   
-	   assertFalse("Rook pieceInTheWay Test 3", piece.isValidMove(rookUp, board));
+	   assertFalse("Rook pieceInTheWay Test 3", 
+			   piece.isValidMove(rookUp, board));
    }
    
    @Test
@@ -135,7 +139,8 @@ public class RookTest extends ChessPieceTest {
 	   board[4][3] = otherPiece;
 	   Move rookDown = new Move(2, 3, 4, 3);
 	   
-	   assertFalse("Rook pieceInTheWay Test 4", piece.isValidMove(rookDown, board));
+	   assertFalse("Rook pieceInTheWay Test 4", 
+			   piece.isValidMove(rookDown, board));
    }
    
    @Test

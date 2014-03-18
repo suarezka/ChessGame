@@ -14,7 +14,7 @@ import gvprojects.chess.model.Player;
  *
  * @author Kaye Suarez
  * @author DaiLynn Dietz
- * @version Feb 24, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public abstract class ChessPiece implements IChessPiece {
 
@@ -287,7 +287,8 @@ public abstract class ChessPiece implements IChessPiece {
 	 * @param col Start col of the piece trying to check
 	 * @return  True if piece can check other players king
 	 ************************************************************/
-	public boolean canCheck(IChessPiece piece, IChessPiece[][] board, int row, int col){
+	public boolean canCheck(IChessPiece piece, IChessPiece[][] board, 
+			int row, int col){
 		
 		//Loops through board
 		for(int r = 0; r < board.length; r++){

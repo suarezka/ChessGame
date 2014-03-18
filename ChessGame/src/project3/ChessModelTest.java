@@ -9,6 +9,15 @@ import gvprojects.chess.model.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+/************************************************************
+ * CIS 163-07
+ * Chess Project
+ * JUnit testing for the Chess Model Class
+ *
+ * @author DaiLynn Dietz
+ * @author Kaye Suarez
+ * @version Mar 18, 2014
+ ************************************************************/
 public class ChessModelTest {
 
 	protected IChessModel model;

@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
- * @version Mar 8, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public class BishopTest extends ChessPieceTest {
 

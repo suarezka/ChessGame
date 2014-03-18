@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
- * @version Mar 8, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public class QueenTest extends ChessPieceTest {
 
@@ -231,13 +231,13 @@ public class QueenTest extends ChessPieceTest {
 				board[6][3] = new Pawn(Player.WHITE);
 				board[6][4] = new Pawn(Player.WHITE);
 				board[6][5] = new Pawn(Player.WHITE);
-//				board[6][6] = new Pawn(Player.WHITE);
+				board[6][6] = new Pawn(Player.WHITE);
 				board[6][7] = new Pawn(Player.WHITE);
 				
 				
 				
-//				assertFalse(b.isValidMove(new Move(7, 5, 5, 7), board));
-//				assertFalse(r.isValidMove(new Move(7, 7,2, 6), board));
+				assertFalse(b.isValidMove(new Move(7, 5, 5, 7), board));
+				assertFalse(r.isValidMove(new Move(7, 7,2, 6), board));
 				assertFalse(piece.isValidMove(new Move(7, 3, 0, 4), board));
 	}
 }

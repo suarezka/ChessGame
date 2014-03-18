@@ -11,7 +11,7 @@ import gvprojects.chess.model.Player;
  *
  * @author DaiLynn Dietz
  * @author Kaye Suarez
- * @version Mar 8, 2014
+ * @version Mar 18, 2014
  ************************************************************/
 public class Bishop extends ChessPiece {
 
