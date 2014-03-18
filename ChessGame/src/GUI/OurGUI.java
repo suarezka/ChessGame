@@ -206,11 +206,6 @@ public class OurGUI implements ActionListener {
     				(chessBoard[fromR][fromC].getIcon());
 			chessBoard[fromR][fromC].setIcon(null);
 			
-			/*
-			if (game.inCheck()) {
-				JOptionPane.showMessageDialog(null, "King is in Check!");
-			}
-			*/
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
@@ -304,7 +299,14 @@ public class OurGUI implements ActionListener {
                         movePiece(firstR, firstC, secondR, secondC);
                         if (game.inCheck()) {
             				JOptionPane.showMessageDialog(null, "King is in Check!");
-            			}
+            			} 
+                        
+                        /*
+                        //Not Working
+                        if (game.isComplete()) {
+                        	JOptionPane.showMessageDialog(null, "Game Over!");
+                        }
+                        */
                         firstR = firstC = -1;
                         
 					}
