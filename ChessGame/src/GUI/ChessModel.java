@@ -116,8 +116,6 @@ public class ChessModel implements IChessModel {
 						((King) board[r][c]).isInCheck(r, c, board)){
 					isInCheck = true;
 					
-					//TODO
-					System.out.println(board[r][c].player());
 					//Checks player color to fill appropriate array list
 					if(board[r][c].player() == Player.BLACK){
 						attackMovesB = ((King) board[r][c]).getAttackers();
@@ -172,6 +170,9 @@ public class ChessModel implements IChessModel {
 				for(int c = 0; c < board[0].length; c++){
 
 					if(board[r][c] == null) continue;
+					if(board[r][c].player() != Player.BLACK || 
+							board[r][c].type().equals("King")) continue;
+					
 					
 					//Gets path the attacking piece plans to take
 					ArrayList<Point> path = pathGetter(attackMovesB.get(0));
@@ -209,9 +210,11 @@ public class ChessModel implements IChessModel {
 				
 			//Loops through board
 			for(int r = 0; r < board.length; r++){
-				for(int c = 0; c < board[0].length; c++){
+				for(int c = 0 ; c < board[0].length; c++){
 
 					if(board[r][c] == null) continue; 
+					if(board[r][c].player() != Player.WHITE || 
+							board[r][c].type().equals("King")) continue;
 					
 					//Gets intended attack path
 					ArrayList<Point> path = pathGetter(attackMovesW.get(0));
@@ -249,7 +252,9 @@ public class ChessModel implements IChessModel {
 				board[fromR][fromC].type().equals("Rook") || 
 				board[fromR][fromC].type().equals("Bishop")){
 
-			board[fromR][fromC].isValidMove(move, board);
+//			board[fromR][fromC].isValidMove(move, board);
+			((ChessPiece) board[fromR][fromC]).isPathClear(
+					fromR, fromC, move.toRow, move.toColumn, board);
 			path = ((ChessPiece) board[fromR][fromC]).getPiecePath();
 
 			//Checking if piece has no path, and just needs

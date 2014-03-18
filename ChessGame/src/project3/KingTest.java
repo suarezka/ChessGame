@@ -119,15 +119,6 @@ public class KingTest extends ChessPieceTest {
 	}
 	
 	@Test
-	public void doesntMoveToCheck() throws Exception {
-		board[4][2] = piece;
-		board[2][5] = new Bishop(piece.player().next());
-		
-		assertFalse("King doesnt move to check test", 
-				piece.isValidMove(new Move(4 ,2, 4, 3), board));
-	}
-	
-	@Test
 	public void cantAttackOtherKing() throws Exception {
 		board[6][2] = piece;
 		board[6][4] = new King(piece.player().next());

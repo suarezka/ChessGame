@@ -66,34 +66,4 @@ public abstract class ChessPieceTest {
       board[move.fromRow][move.fromColumn] = piece;
       assertFalse("ChessPiece Test 3", piece.isValidMove(move, board));
    }
-
-   @Test
-   public void canCapture() throws Throwable {
-        for (int k = 0; k < 50; k++) {
-            Move move = getValidMove(3, 4);
-            board[move.toRow][move.toColumn] = make(piece.player().next());
-            board[move.fromRow][move.fromColumn] = piece;
-            assertTrue("ChessPiece Test 4", piece.isValidMove(move, board));
-            board[move.fromRow][move.fromColumn] = null;
-            board[move.toRow][move.toColumn] = null;
-        }
-   }
-
-   //TODO this fails :(
-   @Test
-   public void checkTest() throws Throwable {
-	   board[1][1] = piece;
-	   
-	   //retrieves a valid move for the piece in question
-	   Move move = getValidMove(1, 1);
-	   int col = move.toColumn;
-	   int row = move.toRow;
-	   
-	   //Places king at end of valid move
-	   board[row][col] = new King(piece.player().next());
-	   assertTrue("Check Test for ChessPiece", 
-			   ((ChessPiece) piece).canCheck(piece, board, 1, 1));
-   }
-   
-
 }

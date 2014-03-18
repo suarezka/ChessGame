@@ -2,14 +2,9 @@ package GUI;
 
 import static org.junit.Assert.*;
 import gvprojects.chess.model.IChessModel;
-import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
-import gvprojects.chess.model.Player;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import project3.*;
 
 public class ChessModelTest {
 
@@ -22,6 +17,7 @@ public class ChessModelTest {
 	
 	@Test
 	public void isNotCompleteTest() throws Exception {
+		assertFalse(model.inCheck());
 		assertFalse("Testing notIsComplete", model.isComplete());
 	}
 
@@ -34,6 +30,44 @@ public class ChessModelTest {
 		
 		assertTrue(model.inCheck());
 		assertTrue("Testing isComplete", model.isComplete());
+	}
+	
+	@Test
+	public void isCompleteTest2() throws Exception {
+		model.move(new Move(6, 4, 5, 4));
+		model.move(new Move(1, 5, 2, 5));
+		model.move(new Move(7, 3, 5, 5));
+		model.move(new Move(1, 6, 3, 6));
+		model.move(new Move(5, 5, 3, 7));
+		
+		assertTrue(model.inCheck());
+		assertTrue(model.isComplete());
+	}
+	
+	@Test
+	public void checkNotComplete() throws Exception {
+		model.move(new Move(6, 4, 5, 4));
+		model.move(new Move(1, 5, 2, 5));
+		model.move(new Move(7, 3, 3, 7));
+		
+		assertTrue(model.inCheck());
+		assertFalse(model.isComplete());
+		assertFalse(model.isValidMove(new Move(1, 6, 3, 6)));
+	}
+	
+	@Test
+	public void LoopTest() throws Exception {
+		model.move(new Move(6, 4, 5, 4));
+		model.move(new Move(1, 5, 2, 5));
+		model.move(new Move(7, 3, 3, 7));
+		
+		for(int r = 0; r < model.numRows(); r++){
+			for(int c = 0; c < model.numColumns(); c++){
+				for(int i = 0; i < model.numColumns(); i++){
+					assertFalse(model.isValidMove(new Move(0, i, r, c)));
+				}
+			}
+		}
 	}
 	
 }

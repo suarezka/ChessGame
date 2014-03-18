@@ -111,6 +111,9 @@ public abstract class ChessPiece implements IChessPiece {
 	public boolean isPathClear(int fromR, int fromC, int toR, 
 			int toC, IChessPiece board[][]) {
 
+		path.clear();
+		path.add(new Point(fromR, fromC));
+		
 		//Piece is moving horizontal or vertical
 		if (fromR == toR ^ fromC == toC) {
 			return isPathClearHorizontal(fromR, fromC, toR, toC, board);
@@ -242,7 +245,7 @@ public abstract class ChessPiece implements IChessPiece {
 			startR = fromR + 1;
 
 			//Checks left down
-			if (fromR > toR) {
+			if (fromC > toC) {
 				startC = fromC - 1;
 
 				while (startR != toR && startC != toC) {
@@ -271,7 +274,7 @@ public abstract class ChessPiece implements IChessPiece {
 			}
 
 		}
-
+		path.add(new Point(startR, startC));
 		return true;
 	}
 	

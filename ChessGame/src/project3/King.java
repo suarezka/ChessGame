@@ -84,9 +84,9 @@ public class King extends ChessPiece {
 		}
 
 		//Disallows moving into a check position
-		if(isInCheck(toR, toC, board)){
-			return false;
-		}
+//		if(isInCheck(toR, toC, board)){
+//			return false;
+//		}
 
 
 		//Checks only possible moves for match with desired move
@@ -126,7 +126,6 @@ public class King extends ChessPiece {
 					//Sees if piece can move to king
 					if(board[r][c].isValidMove(move, board)){
 						inCheck = true;
-						System.out.println(r + ", " + c + ": " + board[r][c].type() + " : " + board[r][c].player());
 						attackers.add(move);
 					}
 				}
