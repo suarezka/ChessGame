@@ -79,7 +79,8 @@ public class Pawn extends ChessPiece {
 		
 		//Capture stuff
 		if(Math.abs(fromC - toC) == 1 && Math.abs(fromR - toR) == 1) {
-			if(board[toR][toC] != null && board[toR][toC].player() == player().next()){
+			if(board[toR][toC] != null && board[toR][toC].player()
+					== player().next()){
 				return true;
 			} else {
 				return false;
@@ -95,10 +96,18 @@ public class Pawn extends ChessPiece {
 			return false;
 		}
 		
-		if(Player.WHITE == player() && fromR - toR < 0){
+		//Doesnt let pieces move backwards
+		if(Player.WHITE == player() && board[fromR - 1][toC] != null){
+			return false;
+		}
+		if(Player.BLACK == player() && board[fromR + 1][toC] != null){
 			return false;
 		}
 		
+		//Backup disallowing backwards movement
+		if(Player.WHITE == player() && fromR - toR < 0){
+			return false;
+		}
 		if(Player.BLACK == player() && fromR - toR > 0){
 			return false;
 		}

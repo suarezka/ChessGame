@@ -23,6 +23,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import project3.ChessModel;
+
 /************************************************************
  * CIS 163-07
  * Chess Project

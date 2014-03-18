@@ -1,8 +1,10 @@
-package GUI;
+package project3;
 
 import static org.junit.Assert.*;
 import gvprojects.chess.model.IChessModel;
+import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -69,5 +71,14 @@ public class ChessModelTest {
 			}
 		}
 	}
+	
+	@Test
+	public void moveWorks() throws Exception {
+		IChessPiece piece = model.pieceAt(6, 4);
+		model.move(new Move(6, 4, 5, 4));
+		
+		assertEquals(model.pieceAt(5, 4), piece);
+	}
+	
 	
 }

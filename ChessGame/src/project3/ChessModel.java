@@ -1,15 +1,8 @@
-package GUI;
+package project3;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-import project3.Bishop;
-import project3.ChessPiece;
-import project3.King;
-import project3.Knight;
-import project3.Pawn;
-import project3.Queen;
-import project3.Rook;
 import gvprojects.chess.model.IChessModel;
 import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
@@ -324,7 +317,7 @@ public class ChessModel implements IChessModel {
 	}
 
 	/************************************************************
-	 * Method to actually move pieces arround on the board
+	 * Method to actually move pieces around on the board
 	 * 
 	 * @param move Desired move to be made
 	 ************************************************************/
