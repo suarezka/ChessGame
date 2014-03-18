@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import gvprojects.chess.model.IChessModel;
 import gvprojects.chess.model.IChessPiece;
 import gvprojects.chess.model.Move;
+import gvprojects.chess.model.Player;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -80,5 +81,33 @@ public class ChessModelTest {
 		assertEquals(model.pieceAt(5, 4), piece);
 	}
 	
+	@Test
+	public void playerSwitches() throws Exception {
+		Player p = model.currentPlayer();
+		model.move(new Move(6, 4, 4, 4));
+		
+		assertTrue(!p.equals(model.currentPlayer()));
+	}
 	
+	@Test
+	public void validMoveTest() throws Exception {
+		assertTrue(model.isValidMove(new Move(7, 1, 5, 2)));
+		model.move(new Move(7, 1, 5, 2));
+		assertTrue(model.isValidMove(new Move(1, 3, 3, 3)));
+	}
+	
+	@Test
+	public void invalidMoveTest() throws Exception {
+		assertFalse(model.isValidMove(new Move(7, 0, 5, 0)));
+	}
+	
+	@Test
+	public void invalidMoveTest2() throws Exception {
+		assertFalse(model.isValidMove(new Move(7, 0, 5, 3)));
+	}
+	
+	@Test
+	public void invalidMoveTest3() throws Exception {
+		assertFalse(model.isValidMove(new Move(5, 0, 4, 0)));
+	}
 }
