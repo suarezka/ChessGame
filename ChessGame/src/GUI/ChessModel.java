@@ -281,6 +281,7 @@ public class ChessModel implements IChessModel {
 	public boolean isValidMove(Move move) {
 		
 		//Doesnt allow pieces to move out of turn
+		if(board[move.fromRow][move.fromColumn] == null) return false;
 		if (board[move.fromRow][move.fromColumn].player() != currentPlayer()) {
 			return false;
 		}
