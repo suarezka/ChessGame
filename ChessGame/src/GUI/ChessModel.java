@@ -109,11 +109,15 @@ public class ChessModel implements IChessModel {
 		for(int r = 0; r < board.length; r++){
 			for(int c = 0; c < board[0].length; c++){
 
+				if(board[r][c] == null) continue;
+				
 				//Checks if piece at board is a king in check
 				if(board[r][c].type().equals("King") && 
 						((King) board[r][c]).isInCheck(r, c, board)){
 					isInCheck = true;
-
+					
+					//TODO
+					System.out.println(board[r][c].player());
 					//Checks player color to fill appropriate array list
 					if(board[r][c].player() == Player.BLACK){
 						attackMovesB = ((King) board[r][c]).getAttackers();
@@ -167,6 +171,8 @@ public class ChessModel implements IChessModel {
 			for(int r = 0; r < board.length; r++){
 				for(int c = 0; c < board[0].length; c++){
 
+					if(board[r][c] == null) continue;
+					
 					//Gets path the attacking piece plans to take
 					ArrayList<Point> path = pathGetter(attackMovesB.get(0));
 					
@@ -200,13 +206,15 @@ public class ChessModel implements IChessModel {
 				}
 
 			}
-			
+				
 			//Loops through board
 			for(int r = 0; r < board.length; r++){
 				for(int c = 0; c < board[0].length; c++){
 
+					if(board[r][c] == null) continue; 
+					
 					//Gets intended attack path
-					ArrayList<Point> path = pathGetter(attackMovesB.get(0));
+					ArrayList<Point> path = pathGetter(attackMovesW.get(0));
 					
 					//Loops through intended path and tries to block
 					for(Point p: path){
@@ -219,6 +227,7 @@ public class ChessModel implements IChessModel {
 			}
 		}
 
+		gameInProgress = false;
 		return true;
 	}
 
@@ -243,7 +252,8 @@ public class ChessModel implements IChessModel {
 			board[fromR][fromC].isValidMove(move, board);
 			path = ((ChessPiece) board[fromR][fromC]).getPiecePath();
 
-			//Checking if piece has no path, and just needs to be removed to block
+			//Checking if piece has no path, and just needs
+			//to be removed to block
 		}else if(board[fromR][fromC].type().equals("Pawn") 
 				|| board[fromR][fromC].type().equals("Knight")){
 			path.add(new Point(fromR, fromC));

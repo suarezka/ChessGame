@@ -126,6 +126,7 @@ public class King extends ChessPiece {
 					//Sees if piece can move to king
 					if(board[r][c].isValidMove(move, board)){
 						inCheck = true;
+						System.out.println(r + ", " + c + ": " + board[r][c].type() + " : " + board[r][c].player());
 						attackers.add(move);
 					}
 				}

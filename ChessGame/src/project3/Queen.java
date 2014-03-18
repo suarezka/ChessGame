@@ -54,11 +54,17 @@ public class Queen extends ChessPiece{
 		int toC = move.toColumn;
 		int toR = move.toRow;
 
-		//Check horizontal and vertical path
-		if (!isPathClear(fromR, fromC, toR, toC, board)) {
-			return false;
+		//Check if move is either front/back or side to side
+		if (fromR != toR && fromC != toC) {
+			//makes sure its a true diagonal path
+			if(Math.abs(fromC - toC) != Math.abs(fromR - toR)){
+				return false;
+			}
 		}
 		
+		
+		
+		//Check horizontal and vertical path
 		if (!isPathClear(fromR, fromC, toR, toC, board)) {
 			return false;
 		}

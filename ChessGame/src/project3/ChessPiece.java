@@ -112,7 +112,7 @@ public abstract class ChessPiece implements IChessPiece {
 			int toC, IChessPiece board[][]) {
 
 		//Piece is moving horizontal or vertical
-		if (fromR == toR || fromC == toC) {
+		if (fromR == toR ^ fromC == toC) {
 			return isPathClearHorizontal(fromR, fromC, toR, toC, board);
 		} else {
 			return isPathClearDiagonal(fromR, fromC, toR, toC, board);
