@@ -211,7 +211,6 @@ public class OurGUI implements ActionListener {
 				JOptionPane.showMessageDialog(null, "King is in Check!");
 			}
 			*/
-			
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
@@ -303,6 +302,9 @@ public class OurGUI implements ActionListener {
                                 firstR, firstC, secondR, secondC));
                         
                         movePiece(firstR, firstC, secondR, secondC);
+                        if (game.inCheck()) {
+            				JOptionPane.showMessageDialog(null, "King is in Check!");
+            			}
                         firstR = firstC = -1;
                         
 					}
