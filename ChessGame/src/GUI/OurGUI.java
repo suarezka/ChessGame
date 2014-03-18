@@ -298,15 +298,16 @@ public class OurGUI implements ActionListener {
                         
                         movePiece(firstR, firstC, secondR, secondC);
                         if (game.inCheck()) {
-            				JOptionPane.showMessageDialog(null, "King is in Check!");
+            				if(game.isComplete()){
+            					JOptionPane.showMessageDialog(null, "Game Over!");
+            					System.exit(0);
+            				}else{
+            					JOptionPane.showMessageDialog(null, "King is in Check!");
+            				}
             			} 
                         
-                        /*
-                        //Not Working
-                        if (game.isComplete()) {
-                        	JOptionPane.showMessageDialog(null, "Game Over!");
-                        }
-                        */
+                        
+                        
                         firstR = firstC = -1;
                         
 					}
