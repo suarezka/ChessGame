@@ -264,19 +264,46 @@ public class ChessModel implements IChessModel {
 	 ************************************************************/
 	@Override
 	public boolean isValidMove(Move move) {
+		
+		//Doesnt allow pieces to move out of turn
 		if (board[move.fromRow][move.fromColumn].player() != currentPlayer()) {
-			throw new IllegalArgumentException("Wait your turn!");
+			return false;
 		}
+		
+		//Doesnt allow invalid moves for piece behavior
 		if(!board[move.fromRow][move.fromColumn].isValidMove(move, board)){
 			return false;
 		}
 
-		if(inCheck() && Player.BLACK == curPlayer && !attackMovesB.isEmpty()){
-
-		}else if(inCheck()){
-
+		int toR = move.toRow;
+		int toC = move.toColumn;
+		int fromR = move.fromRow;
+		int fromC = move.fromColumn;
+		
+		//If game is in check, tries to move pieces out of check
+		if(inCheck()){
+			ArrayList<Point> path;
+			
+			//Sets path to appropriate attacking path
+			if(Player.BLACK == curPlayer && !attackMovesB.isEmpty()){
+				path = pathGetter(attackMovesB.get(0));	
+			}else if(Player.WHITE == curPlayer && !attackMovesW.isEmpty()){
+				path = pathGetter(attackMovesW.get(0));
+			}else{
+				return true;
+			}
+			
+			//Checks if king can move away
+			if(board[fromR][fromC].type().equals("King")){
+				if (((King) board[fromR][fromC]).isInCheck(toR, toC, board)){
+					return false;
+				}
+				
+			//Checks if piece intends to move into block attack
+			}else if(!path.contains(new Point(toR, toC))){
+				return false;
+			}
 		}
-
 		return true;
 	}
 
