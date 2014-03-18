@@ -227,7 +227,7 @@ public class OurGUI implements ActionListener {
      * @return the requested image.
      ****************************************************************/
     public static ImageIcon loadIcon(String name) {
-    	java.net.URL imgURL = ChessGUI.class.getResource(name);
+    	java.net.URL imgURL = OurGUI.class.getResource(name);
     	if (imgURL == null) {
     		throw new RuntimeException("Icon resource not found.");
     	}
